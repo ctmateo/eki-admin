@@ -1,0 +1,80 @@
+// FLEX POSITION
+.col
+  display: flex
+  flex-direction: column!important
+
+.row
+  display: flex
+  flex-direction: row!important
+
+.row-wrap
+  display: flex
+  flex-wrap: row wrap!important
+
+.row-to-col-sm
+  @media screen and (max-width: $break-sm)
+    flex-direction: column!important
+
+.row-to-col-md
+  @media screen and (max-width: $break-md)
+    flex-direction: column!important
+
+.row-to-col-reverse-md
+  @media screen and (max-width: $break-md)
+    flex-direction: column-reverse!important
+
+// FLEX ATTRIBUTES
+.f-wrap
+  flex-wrap: wrap
+
+.flow-wrap
+  flex-flow: wrap
+
+.f-center
+  justify-content: center
+  align-content: center
+  align-items: center
+  
+.f-center-h
+  align-items: center!important
+
+.f-center-v
+  justify-content: center!important
+  
+.f-between
+  justify-content: space-between
+
+.f-evenly
+  justify-content: space-evenly
+
+.f-start
+  justify-content: flex-start
+  align-content: flex-start
+
+.f-end
+  align-items: flex-end
+  justify-content: flex-end
+  align-content: flex-end
+
+.f-reverse
+  flex-direction: row-reverse!important
+
+// GAP
+@each $prop, $value in (0: 0, 1: 10px, 2: 20px, 3: 30px, 4: 40px, 5: 50px, 6: 60px, 7: 70px, 8: 80px, 9: 90px, 10: 100px)
+  .g-#{$prop}
+    gap: $value!important
+
+.grid-container
+    display: flex
+    flex-wrap: wrap
+    justify-content: space-between
+
+.grid-item
+    flex: 0 0 calc(50% - 10px)
+    margin-bottom: 10px
+    background-color: #ccc
+    display: flex
+    align-items: center
+    justify-content: center
+    font-weight: bold
+    font-size: 20px

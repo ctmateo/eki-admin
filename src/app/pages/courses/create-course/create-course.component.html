@@ -1,0 +1,130 @@
+<div class="full-width flex col f-center">
+  <div class="content page">
+    <h3>Nuevo curso</h3>
+    <hr />
+    <br />
+    <div class="col">
+      <form [formGroup]="courseForm">
+        <div class="col" style="position: relative;">
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre del curso: </mat-label>
+            <input type="text" matInput formControlName="name" />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Descripción corta: </mat-label>
+            <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+              cdkAutosizeMaxRows="5" formControlName="descShort"></textarea>
+          </mat-form-field>
+          <mat-form-field style="height: 150px" appearance="outline">
+            <mat-label>Descripción larga: </mat-label>
+            <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+              cdkAutosizeMaxRows="5" formControlName="descLong"></textarea>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Agregar tag</mat-label>
+            <mat-chip-grid #chipGrid aria-label="Fruit selection">
+              <mat-chip-row *ngFor="let tag of tags" (removed)="remove(tag)">
+                {{ tag }}
+                <button matChipRemove [attr.aria-label]="'remove ' + tag">
+                  <fa-icon [icon]="['fas', 'xmark']"></fa-icon>
+                </button>
+              </mat-chip-row>
+            </mat-chip-grid>
+            <input placeholder="Agrega un tag ..." #tagInput [formControl]="tagCtrl" [matChipInputFor]="chipGrid"
+              [matAutocomplete]="auto" />
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+              <mat-option *ngFor="let filteredTag of filteredTags | async" [value]="filteredTag">
+                {{ filteredTag }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <div class="selector-images" *ngIf="showSelectorImages">
+            <div class="container-images">
+              <div *ngFor="let icon of icons" class="border-icons">
+                <fa-icon class="icon-selector" [icon]="[icon.type, icon.name]"
+                  (click)="changeIconCourse(icon.type, icon.name)"></fa-icon>
+              </div>
+            </div>
+          </div>
+          <div class="color-course">
+            <div class="color">
+              <h3>Color</h3>
+              <input style="width: 50px; height: 50px; border-radius: 50px" [(colorPicker)]="color"
+                [style.background]="color" />
+            </div>
+            <div class="icon-class">
+              <h3>Icono</h3>
+              <div (click)="change()" #IconSelector class="icon-picker" [ngStyle]="{'background-color': color }">
+                <fa-icon class="icon" [icon]="[currentIconType, currentIconName]"></fa-icon>
+              </div>
+            </div>
+          </div>
+
+          <h3>Requisitos</h3>
+          <div cdkDropList (cdkDropListDropped)="drop($event, requirements)">
+            <div class="requiremets-list" *ngFor="let item of requirements let i = index" [attr.data-index]="i" cdkDrag>
+              <div class="requirements-name">
+                <fa-icon class="icon" [icon]="['fas', 'bars']"></fa-icon>
+                {{item}}
+              </div>
+              <div class="requirement-panel">
+                <fa-icon class="icon" [icon]="['fas', 'trash']" (click)="deleteRequirement(item)"></fa-icon>
+                <fa-icon class="icon" [icon]="['fas', 'pen-to-square']" (click)="editRequirements(item,i)"></fa-icon>
+              </div>
+            </div>
+          </div>
+
+          <div class="create-requirements-button">
+            <p (click)="openRequirements()">
+              <fa-icon class="icon" [icon]="['fas', 'plus']"></fa-icon> Nuevo requisito
+            </p>
+          </div>
+          
+          <h3>Asignar docente</h3>
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre del curso: </mat-label>
+            <span matPrefix>
+              <fa-icon style="margin-left: 5px" class="icon" [icon]="['fas', 'magnifying-glass']"></fa-icon>
+              &nbsp;</span>
+            <input type="search" matInput />
+          </mat-form-field>
+
+          <div class="teachers-table">
+            <div class="table-header">Nombre Completo</div>
+            <div class="table-body" *ngFor="let teacher of teachers let i = index">
+              <div class="img-container">
+                <img class="teacher-img" [src]="teacher.keyPhoto" />
+              </div>
+              <div class="name">{{teacher.fullName}}</div>
+              <div class="check">
+                <mat-checkbox [checked]="itemSelected === i" (click)="selectTeacher(i,teacher)"></mat-checkbox>
+              </div>
+            </div>
+          </div>
+
+          <h3>Imagen de presentación del curso:</h3>
+          <span>Agregue una imagen con relación de aspecto 4x3</span>
+          <br />
+          <app-add-file (callBackFileChange)="addImageFile($event)" title="Adjunte la imagen"
+            subtitle="Clic en el botón o arrastrar el archivo aquí" fileType="image/png,image/jpg,image/jpeg"
+            [completed]="true"> </app-add-file>
+          <br />
+
+          <h3>Video de presentación del curso:</h3>
+          <span>Agregue un video mp4 (Máximo 120 segundos) </span>
+          <br />
+          <app-add-file (callBackFileChange)="addVideoFile($event)" title="Adjunte un video"
+            subtitle="Clic en el botón o arrastrar el archivo aquí" fileType="video/mp4" [completed]="true">
+          </app-add-file>
+          <br />
+          <div class="buttons-container">
+            <button class="cancel-button" (click)="cancel()" mat-elevation-z0 mat-raised-button>
+              Cancelar
+            </button>
+            <button (click)="create()" class="create-button" mat-raised-button>Crear</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

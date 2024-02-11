@@ -1,0 +1,75 @@
+<br>
+<div class="full-width col">
+  <div class="col f-start">
+    <div>
+      <h2 class="title">Nombre de la ruta</h2>
+    </div>
+  </div>
+  <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+    <mat-tab label="Inscritos">
+      <div class="full-width row f-end">
+        <button mat-raised-button color="primary" (click)="openfindColaborator()"> <fa-icon class="icon"
+            [icon]="['fas', 'user-plus']"></fa-icon> &nbsp; Incribir Colaborador </button>
+      </div>
+      <br>
+      <mat-card>
+
+        <div class="mat-elevation-z0">
+          <mat-paginator [hidePageSize]="true" [length]="lenthSource" [pageSize]="limitElements"
+            (page)="pageChange($event)" aria-label="Select page of periodic elements" pageSize="25">
+          </mat-paginator>
+          <div class="container-table custom-scroll">
+            <table mat-table [dataSource]="dataSource" class="table">
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef class="mw-200"> Colaborador </th>
+                <td mat-cell *matCellDef="let element" class="mw-200"> {{element.collaboratorData.fullName}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="phone">
+                <th mat-header-cell *matHeaderCellDef class="mw-200"> Teléfono </th>
+                <td mat-cell *matCellDef="let element" class="mw-200"> {{element.collaboratorData.id}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="date">
+                <th mat-header-cell *matHeaderCellDef class="mw-200"> Fecha inicio </th>
+                <td mat-cell *matCellDef="let element" class="mw-200"> {{element.createdAt | date:'longDate'}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="state">
+                <th mat-header-cell *matHeaderCellDef class="mw-200"> Estado </th>
+                <td mat-cell *matCellDef="let element" class="mw-200"> {{element.stateFlow}} </td>
+              </ng-container>
+
+              <!-- Weight Column -->
+              <ng-container matColumnDef="progress">
+                <th class="mw-250" mat-header-cell *matHeaderCellDef> Progreso </th>
+                <td class="mw-250 px-1" mat-cell *matCellDef="let element"
+                  matTooltip="Progreso {{element.progress/100}}%" [matTooltipPosition]="'above'">
+                  <mat-progress-bar mode="determinate" value="{{element.progress}}"></mat-progress-bar>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef class="mw-100"> Acciones </th>
+                <td mat-cell *matCellDef="let element" class="full-height mw-100 col f-center content-actions">
+                  <button matTooltip="Borrar flujo" [matTooltipPosition]="'above'" class="icon-actions col f-center"
+                    mat-icon-button color="primary"
+                    (click)="deleteFlowDialog(element.id, element.collaboratorData.fullName)">
+                    <fa-icon class="icon-trash" [icon]="['fas', 'trash']"></fa-icon>
+                  </button>
+                </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </div>
+        </div>
+      </mat-card>
+    </mat-tab>
+    <mat-tab label="Contenido">
+
+    </mat-tab>
+    <mat-tab label="Metricas">Content 3</mat-tab>
+  </mat-tab-group>
+</div>

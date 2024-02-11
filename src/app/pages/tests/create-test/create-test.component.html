@@ -1,0 +1,33 @@
+<div class="content">
+    <h3>Crear formulario o evaluación</h3>
+    <hr>
+    <div class="form-container">
+        <mat-form-field class="form-field" appearance="outline">
+            <mat-label>Nombre del formulario</mat-label>
+            <input type="text" matInput />
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="outline">
+            <mat-label>Agregar tag</mat-label>
+            <mat-chip-grid #chipGrid aria-label="Fruit selection">
+                <mat-chip-row *ngFor="let fruit of fruits" (removed)="remove(fruit)">
+                    {{fruit}}
+                    <button matChipRemove [attr.aria-label]="'remove ' + fruit">
+                        <fa-icon [icon]="['fas', 'xmark']"></fa-icon>
+                    </button>
+                </mat-chip-row>
+            </mat-chip-grid>
+            <input placeholder="New Fruit..." #fruitInput [formControl]="fruitCtrl" [matChipInputFor]="chipGrid"
+                [matAutocomplete]="auto" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                (matChipInputTokenEnd)="add($event)" />
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                <mat-option *ngFor="let fruit of filteredFruits | async" [value]="fruit">
+                    {{fruit}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
+        <div class="buttons-container">
+            <button class="cancel-button" (click)="cancel()" mat-elevation-z0 mat-raised-button>Cancelar</button>
+            <button class="create-button" mat-raised-button>Crear</button>
+        </div>
+    </div>
+</div>

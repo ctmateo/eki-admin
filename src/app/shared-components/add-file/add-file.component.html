@@ -1,0 +1,10 @@
+<div *ngIf="!hasFile" class="upload-card" appDnd (fileDropped)="fileBrowseHandler($event, 'dragged')">
+    <input type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event, 'button')" accept="{{fileType}}">
+    <fa-icon class="icon-name" [icon]="['fas', 'cloud-upload-alt']"></fa-icon>
+    <h2>{{title}}</h2>
+    <p>{{subtitle}}.</p>
+    <button mat-raised-button style="background-color: #7D06AD; color:#F5F6FA"> Carga el archivo </button>
+</div>
+<div class="upload-card" *ngIf="completed && hasFile">
+    <h2 style="color: #7D06AD;">Archivo Agregado</h2>
+</div>

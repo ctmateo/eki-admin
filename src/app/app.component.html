@@ -1,0 +1,113 @@
+<app-header class="full-width top-view" *ngIf="isLogging"></app-header>
+<mat-drawer-container class="sidenav-content" [hasBackdrop]="false" autosize>
+  <mat-drawer #drawer mode="side">
+    <mat-toolbar class="sidebar"
+      [ngStyle]="expanded ? {'width':'240px', 'justify-content': 'flex-start', 'padding-left': '20px'} : {'width':'72px', 'justify-content': 'flex-end'}">
+      <div class="content-toolbar" [ngStyle]="expanded ? {'align-items':'center'} : {'align-items':'flex-start'}">
+        <div class="class-buttons">
+
+          <div style="width: 100%; display: flex; margin-top: 10px; justify-content: space-between;">
+            <button mat-button [ngClass]="expanded? 'menu-button-expanded' : 'menu-button'" *ngIf="!expanded"
+              (click)="expanded = !expanded" #tooltip="matTooltip" matTooltip="Menu" matTooltipPosition="after"
+              [matTooltipDisabled]="expanded">
+              <fa-icon class="icon" [icon]="['fas', 'bars']"></fa-icon>
+            </button>
+            <div style="width:120px;" *ngIf="expanded"></div>
+            <button mat-button class="menu-button-close" *ngIf="expanded" (click)="expanded = !expanded">
+              <fa-icon class="icon" [icon]="['fas', 'xmark']"></fa-icon>
+            </button>
+          </div>
+
+          <button mat-button
+            [ngClass]="expanded? 'menu-button-expanded' : (nameBottonPush == 'dashboard'? 'menu-button-select' : 'menu-button')"
+            #tooltip="matTooltip" matTooltip="Metricas" matTooltipPosition="after" [matTooltipDisabled]="expanded"
+            (click)="selectIndex(0); goToDashboard()">
+            <fa-icon class="icon" [icon]="['fas', 'chart-column']"></fa-icon>
+            <span *ngIf="expanded">Metricas</span>
+          </button>
+          <button mat-button
+            [ngClass]="expanded? 'menu-button-expanded' : (nameBottonPush == 'companies'? 'menu-button-select' : 'menu-button')"
+            #tooltip="matTooltip" matTooltip="Compañia" matTooltipPosition="after" [matTooltipDisabled]="expanded"
+            (click)="selectIndex(1); goToCompany()">
+            <fa-icon class="icon" [icon]="['fas', 'city']"></fa-icon>
+            <span *ngIf="expanded">Compañia</span>
+          </button>
+          <button mat-button
+            [ngClass]="expanded? 'menu-button-expanded' : (nameBottonPush == 'users'? 'menu-button-select' : 'menu-button')"
+            #tooltip="matTooltip" matTooltip="Usuarios" matTooltipPosition="after" [matTooltipDisabled]="expanded"
+            (click)="selectIndex(2); goToUser()">
+            <fa-icon class="icon" [icon]="['far', 'user']"></fa-icon>
+            <span *ngIf="expanded">Usuarios</span>
+          </button>
+          <button mat-button
+            [ngClass]="expanded? 'menu-button-expanded' :  (nameBottonPush == 'teachers'? 'menu-button-select' : 'menu-button')"
+            #tooltip="matTooltip" matTooltip="Docentes" matTooltipPosition="after" [matTooltipDisabled]="expanded"
+            (click)="selectIndex(3); goToTeachers()">
+            <fa-icon class="icon" [icon]="['fas', 'user-graduate']"></fa-icon>
+            <span *ngIf="expanded">Docentes</span>
+          </button>
+          <button mat-button
+            [ngClass]="expanded? 'menu-button-expanded' : (nameBottonPush == 'courses'? 'menu-button-select' : 'menu-button')"
+            #tooltip="matTooltip" matTooltip="Cursos" matTooltipPosition="after" [matTooltipDisabled]="expanded"
+            (click)="selectIndex(4); goToCourses()">
+            <fa-icon class="icon" [icon]="['fas', 'graduation-cap']"></fa-icon>
+            <span *ngIf="expanded">Cursos</span>
+          </button>
+          <button mat-button
+            [ngClass]="expanded? 'menu-button-expanded' : (nameBottonPush == 'tests'? 'menu-button-select' : 'menu-button')"
+            #tooltip="matTooltip" matTooltip="Formularios" matTooltipPosition="after" [matTooltipDisabled]="expanded"
+            (click)="selectIndex(5); goToTest()">
+            <fa-icon class="icon" [icon]="['fas', 'book']"></fa-icon>
+            <span *ngIf="expanded">Formularios</span>
+          </button>
+          <button mat-button
+            [ngClass]="expanded? 'menu-button-expanded' : (nameBottonPush == 'routes'? 'menu-button-select' : 'menu-button')"
+            #tooltip="matTooltip" matTooltip="Rutas" matTooltipPosition="after" [matTooltipDisabled]="expanded"
+            (click)="selectIndex(6); goToRoutes()">
+            <fa-icon class="icon" [icon]="['fas', 'route']"></fa-icon>
+            <span *ngIf="expanded">Rutas</span>
+          </button>
+          <button mat-button
+            [ngClass]="expanded? 'menu-button-expanded' : (nameBottonPush == 'reports'? 'menu-button-select' : 'menu-button')"
+            #tooltip="matTooltip" matTooltip="Tickets" matTooltipPosition="after" [matTooltipDisabled]="expanded"
+            (click)="selectIndex(7); goToTickets()">
+            <fa-icon class="icon" [icon]="['fas', 'ticket']"></fa-icon>
+            <span *ngIf="expanded">Tickets</span>
+          </button>
+          <button mat-button
+            [ngClass]="expanded? 'menu-button-expanded' : (nameBottonPush == 'infografias'? 'menu-button-select' : 'menu-button')"
+            #tooltip="matTooltip" matTooltip="Infografías" matTooltipPosition="after" [matTooltipDisabled]="expanded" (click)="selectIndex(8); goToInfographics();">
+            
+            <fa-icon class="icon" [icon]="['fas','image']"></fa-icon>
+            <span *ngIf="expanded">Infografías</span>
+          </button>
+        </div>
+      </div>
+    </mat-toolbar>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <div role="main">
+      <amplify-authenticator initialState="signIn" [hideSignUp]="true" [loginMechanisms]="['email']" [signUpAttributes]="['given_name','family_name',
+              'phone_number']" [services]="services">
+
+        <ng-template amplifySlot="header">
+          <div style="padding: var(--amplify-space-large); text-align:
+                      center">
+            <img style="width: 280px; height: auto;" class="amplify-image" alt="Amplify logo"
+              src="https://eki-public.s3.amazonaws.com/logo-purple.png" />
+          </div>
+        </ng-template>
+
+        <ng-template amplifySlot="authenticated" let-user="user" let-signOut="signOut">
+
+          <div class="login-content" #target>
+            <router-outlet></router-outlet>
+          </div>
+
+        </ng-template>
+      </amplify-authenticator>
+    </div>
+  </mat-drawer-content>
+
+</mat-drawer-container>

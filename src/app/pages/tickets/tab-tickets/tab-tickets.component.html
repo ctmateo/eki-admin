@@ -1,0 +1,43 @@
+<div class="content">
+  <div class="buttons">
+    <button #forms mat-stroked-button>Formularios</button>
+    <button #content mat-stroked-button>Contenido</button>
+    <button #payments mat-stroked-button>Pagos</button>
+    <button #multimedia mat-stroked-button>Multimedia</button>
+  </div>
+  <br />
+  <mat-card class="card card-eki">
+    <mat-card-header class="header">
+      <div class="info-ticket">
+        <div class="name-container">
+          <strong>Andre Rubiano</strong>
+          <mat-select 
+            class="select"
+            (selectionChange)="priorityChanged($event)"
+            [ngStyle]="prioritySelected === 'Urgente' ? {'background-color':'#FFB1BE'} : {'background-color':'#f3f177'}" 
+            [value]="prioritySelected">
+            <mat-option *ngFor="let item of priority" [value]="item">{{
+              item
+            }}</mat-option>
+          </mat-select>
+        </div>
+        <p>Ticket ID: {{ tickerID }}</p>
+      </div>
+      <div class="date-ticket">
+        <h3>12/oct/2023</h3>
+      </div>
+    </mat-card-header>
+    <mat-card-content class="card-content">
+      <div class="ticket-body">
+        <strong>Contenido multimedia</strong>
+        <p>
+          No puedo visualizar los cursos. Al enviar el resultado de mi examen no
+          puedo ver el progreso.
+        </p>
+      </div>
+      <div class="button-open">
+        <button (click)="open()" mat-raised-button class="button-open-color mat-elevation-z0">Abrir</button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>

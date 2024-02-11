@@ -1,0 +1,40 @@
+@import "../../../../styles"
+
+.bussines-manager
+    width: 100vw
+    height: 100%
+    overflow: hidden
+
+    .detail
+        overflow-y: auto
+        padding-bottom: 65px
+        
+
+.bussines-content
+    width: calc( 100vw - 70px )
+    .menu
+        background: white
+        width: 300px
+        height: calc( 100vh - 72px )
+        padding: 20px
+
+.logo-company
+    width: 62px
+    height: 62px
+    border-radius: 50%
+    background-size: cover
+    background-position: center
+
+.options
+    margin-top: 25px
+    gap: 4px
+    .item
+        padding: 5px
+        padding-left: 15px
+        color: $main-primary-color    
+        &:hover
+            font-weight: bold
+            background: $main-primary-light-color
+
+.selected
+    font-weight: bold

@@ -1,0 +1,806 @@
+# this is an auto generated file. This will be overwritten
+
+subscription OnRequestSupporMessagesChat(
+  $requestSupportRequestSupporMessagesId: String!
+) {
+  onRequestSupporMessagesChat(
+    requestSupportRequestSupporMessagesId: $requestSupportRequestSupporMessagesId
+  ) {
+    id
+    menssages
+    requestSupportRequestSupporMessagesId
+    requestSupport {
+      id
+      originURL
+      reportSupportType
+      requestMessages
+      requestSupporMessages {
+        items {
+          id
+          menssages
+          requestSupportRequestSupporMessagesId
+          requestSupport {
+            id
+            originURL
+            reportSupportType
+            requestMessages
+            stateRequest
+            userID
+            author
+            updatedAt
+            createdAt
+            __typename
+          }
+          userID
+          user {
+            id
+            author
+            birthday
+            isPolicies
+            hasCharacterization
+            email
+            gender
+            lastname
+            name
+            phone
+            updatedAt
+            createdAt
+            owner
+            __typename
+          }
+          updatedAt
+          createdAt
+          author
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      stateRequest
+      userID
+      user {
+        id
+        author
+        birthday
+        isPolicies
+        hasCharacterization
+        email
+        gender
+        lastname
+        name
+        phone
+        updatedAt
+        createdAt
+        owner
+        __typename
+      }
+      author
+      updatedAt
+      createdAt
+      __typename
+    }
+    userID
+    user {
+      id
+      author
+      birthday
+      isPolicies
+      hasCharacterization
+      email
+      gender
+      lastname
+      name
+      phone
+      updatedAt
+      createdAt
+      owner
+      __typename
+    }
+    updatedAt
+    createdAt
+    author
+    __typename
+  }
+}
+
+subscription OnCreateCredentials(
+  $filter: ModelSubscriptionCredentialsFilterInput
+) {
+  onCreateCredentials(filter: $filter) {
+    id
+    key
+    secret
+    updatedAt
+    createdAt
+    __typename
+  }
+}
+
+subscription OnUpdateCredentials(
+  $filter: ModelSubscriptionCredentialsFilterInput
+) {
+  onUpdateCredentials(filter: $filter) {
+    id
+    key
+    secret
+    updatedAt
+    createdAt
+    __typename
+  }
+}
+
+subscription OnDeleteCredentials(
+  $filter: ModelSubscriptionCredentialsFilterInput
+) {
+  onDeleteCredentials(filter: $filter) {
+    id
+    key
+    secret
+    updatedAt
+    createdAt
+    __typename
+  }
+}
+
+subscription OnCreateUser(
+  $filter: ModelSubscriptionUserFilterInput
+  $author: String
+  $owner: String
+) {
+  onCreateUser(filter: $filter, author: $author, owner: $owner) {
+    id
+    author
+    birthday
+    isPolicies
+    hasCharacterization
+    email
+    gender
+    lastname
+    name
+    phone
+    updatedAt
+    createdAt
+    owner
+    __typename
+  }
+}
+
+subscription OnUpdateUser(
+  $filter: ModelSubscriptionUserFilterInput
+  $author: String
+  $owner: String
+) {
+  onUpdateUser(filter: $filter, author: $author, owner: $owner) {
+    id
+    author
+    birthday
+    isPolicies
+    hasCharacterization
+    email
+    gender
+    lastname
+    name
+    phone
+    updatedAt
+    createdAt
+    owner
+    __typename
+  }
+}
+
+subscription OnDeleteUser(
+  $filter: ModelSubscriptionUserFilterInput
+  $author: String
+  $owner: String
+) {
+  onDeleteUser(filter: $filter, author: $author, owner: $owner) {
+    id
+    author
+    birthday
+    isPolicies
+    hasCharacterization
+    email
+    gender
+    lastname
+    name
+    phone
+    updatedAt
+    createdAt
+    owner
+    __typename
+  }
+}
+
+subscription OnCreateRequestSupport(
+  $filter: ModelSubscriptionRequestSupportFilterInput
+  $author: String
+) {
+  onCreateRequestSupport(filter: $filter, author: $author) {
+    id
+    originURL
+    reportSupportType
+    requestMessages
+    requestSupporMessages {
+      items {
+        id
+        menssages
+        requestSupportRequestSupporMessagesId
+        requestSupport {
+          id
+          originURL
+          reportSupportType
+          requestMessages
+          requestSupporMessages {
+            nextToken
+            __typename
+          }
+          stateRequest
+          userID
+          user {
+            id
+            author
+            birthday
+            isPolicies
+            hasCharacterization
+            email
+            gender
+            lastname
+            name
+            phone
+            updatedAt
+            createdAt
+            owner
+            __typename
+          }
+          author
+          updatedAt
+          createdAt
+          __typename
+        }
+        userID
+        user {
+          id
+          author
+          birthday
+          isPolicies
+          hasCharacterization
+          email
+          gender
+          lastname
+          name
+          phone
+          updatedAt
+          createdAt
+          owner
+          __typename
+        }
+        updatedAt
+        createdAt
+        author
+        __typename
+      }
+      nextToken
+      __typename
+    }
+    stateRequest
+    userID
+    user {
+      id
+      author
+      birthday
+      isPolicies
+      hasCharacterization
+      email
+      gender
+      lastname
+      name
+      phone
+      updatedAt
+      createdAt
+      owner
+      __typename
+    }
+    author
+    updatedAt
+    createdAt
+    __typename
+  }
+}
+
+subscription OnUpdateRequestSupport(
+  $filter: ModelSubscriptionRequestSupportFilterInput
+  $author: String
+) {
+  onUpdateRequestSupport(filter: $filter, author: $author) {
+    id
+    originURL
+    reportSupportType
+    requestMessages
+    requestSupporMessages {
+      items {
+        id
+        menssages
+        requestSupportRequestSupporMessagesId
+        requestSupport {
+          id
+          originURL
+          reportSupportType
+          requestMessages
+          requestSupporMessages {
+            nextToken
+            __typename
+          }
+          stateRequest
+          userID
+          user {
+            id
+            author
+            birthday
+            isPolicies
+            hasCharacterization
+            email
+            gender
+            lastname
+            name
+            phone
+            updatedAt
+            createdAt
+            owner
+            __typename
+          }
+          author
+          updatedAt
+          createdAt
+          __typename
+        }
+        userID
+        user {
+          id
+          author
+          birthday
+          isPolicies
+          hasCharacterization
+          email
+          gender
+          lastname
+          name
+          phone
+          updatedAt
+          createdAt
+          owner
+          __typename
+        }
+        updatedAt
+        createdAt
+        author
+        __typename
+      }
+      nextToken
+      __typename
+    }
+    stateRequest
+    userID
+    user {
+      id
+      author
+      birthday
+      isPolicies
+      hasCharacterization
+      email
+      gender
+      lastname
+      name
+      phone
+      updatedAt
+      createdAt
+      owner
+      __typename
+    }
+    author
+    updatedAt
+    createdAt
+    __typename
+  }
+}
+
+subscription OnDeleteRequestSupport(
+  $filter: ModelSubscriptionRequestSupportFilterInput
+  $author: String
+) {
+  onDeleteRequestSupport(filter: $filter, author: $author) {
+    id
+    originURL
+    reportSupportType
+    requestMessages
+    requestSupporMessages {
+      items {
+        id
+        menssages
+        requestSupportRequestSupporMessagesId
+        requestSupport {
+          id
+          originURL
+          reportSupportType
+          requestMessages
+          requestSupporMessages {
+            nextToken
+            __typename
+          }
+          stateRequest
+          userID
+          user {
+            id
+            author
+            birthday
+            isPolicies
+            hasCharacterization
+            email
+            gender
+            lastname
+            name
+            phone
+            updatedAt
+            createdAt
+            owner
+            __typename
+          }
+          author
+          updatedAt
+          createdAt
+          __typename
+        }
+        userID
+        user {
+          id
+          author
+          birthday
+          isPolicies
+          hasCharacterization
+          email
+          gender
+          lastname
+          name
+          phone
+          updatedAt
+          createdAt
+          owner
+          __typename
+        }
+        updatedAt
+        createdAt
+        author
+        __typename
+      }
+      nextToken
+      __typename
+    }
+    stateRequest
+    userID
+    user {
+      id
+      author
+      birthday
+      isPolicies
+      hasCharacterization
+      email
+      gender
+      lastname
+      name
+      phone
+      updatedAt
+      createdAt
+      owner
+      __typename
+    }
+    author
+    updatedAt
+    createdAt
+    __typename
+  }
+}
+
+subscription OnCreateRequestSupporMessages(
+  $filter: ModelSubscriptionRequestSupporMessagesFilterInput
+  $author: String
+) {
+  onCreateRequestSupporMessages(filter: $filter, author: $author) {
+    id
+    menssages
+    requestSupportRequestSupporMessagesId
+    requestSupport {
+      id
+      originURL
+      reportSupportType
+      requestMessages
+      requestSupporMessages {
+        items {
+          id
+          menssages
+          requestSupportRequestSupporMessagesId
+          requestSupport {
+            id
+            originURL
+            reportSupportType
+            requestMessages
+            stateRequest
+            userID
+            author
+            updatedAt
+            createdAt
+            __typename
+          }
+          userID
+          user {
+            id
+            author
+            birthday
+            isPolicies
+            hasCharacterization
+            email
+            gender
+            lastname
+            name
+            phone
+            updatedAt
+            createdAt
+            owner
+            __typename
+          }
+          updatedAt
+          createdAt
+          author
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      stateRequest
+      userID
+      user {
+        id
+        author
+        birthday
+        isPolicies
+        hasCharacterization
+        email
+        gender
+        lastname
+        name
+        phone
+        updatedAt
+        createdAt
+        owner
+        __typename
+      }
+      author
+      updatedAt
+      createdAt
+      __typename
+    }
+    userID
+    user {
+      id
+      author
+      birthday
+      isPolicies
+      hasCharacterization
+      email
+      gender
+      lastname
+      name
+      phone
+      updatedAt
+      createdAt
+      owner
+      __typename
+    }
+    updatedAt
+    createdAt
+    author
+    __typename
+  }
+}
+
+subscription OnUpdateRequestSupporMessages(
+  $filter: ModelSubscriptionRequestSupporMessagesFilterInput
+  $author: String
+) {
+  onUpdateRequestSupporMessages(filter: $filter, author: $author) {
+    id
+    menssages
+    requestSupportRequestSupporMessagesId
+    requestSupport {
+      id
+      originURL
+      reportSupportType
+      requestMessages
+      requestSupporMessages {
+        items {
+          id
+          menssages
+          requestSupportRequestSupporMessagesId
+          requestSupport {
+            id
+            originURL
+            reportSupportType
+            requestMessages
+            stateRequest
+            userID
+            author
+            updatedAt
+            createdAt
+            __typename
+          }
+          userID
+          user {
+            id
+            author
+            birthday
+            isPolicies
+            hasCharacterization
+            email
+            gender
+            lastname
+            name
+            phone
+            updatedAt
+            createdAt
+            owner
+            __typename
+          }
+          updatedAt
+          createdAt
+          author
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      stateRequest
+      userID
+      user {
+        id
+        author
+        birthday
+        isPolicies
+        hasCharacterization
+        email
+        gender
+        lastname
+        name
+        phone
+        updatedAt
+        createdAt
+        owner
+        __typename
+      }
+      author
+      updatedAt
+      createdAt
+      __typename
+    }
+    userID
+    user {
+      id
+      author
+      birthday
+      isPolicies
+      hasCharacterization
+      email
+      gender
+      lastname
+      name
+      phone
+      updatedAt
+      createdAt
+      owner
+      __typename
+    }
+    updatedAt
+    createdAt
+    author
+    __typename
+  }
+}
+
+subscription OnDeleteRequestSupporMessages(
+  $filter: ModelSubscriptionRequestSupporMessagesFilterInput
+  $author: String
+) {
+  onDeleteRequestSupporMessages(filter: $filter, author: $author) {
+    id
+    menssages
+    requestSupportRequestSupporMessagesId
+    requestSupport {
+      id
+      originURL
+      reportSupportType
+      requestMessages
+      requestSupporMessages {
+        items {
+          id
+          menssages
+          requestSupportRequestSupporMessagesId
+          requestSupport {
+            id
+            originURL
+            reportSupportType
+            requestMessages
+            stateRequest
+            userID
+            author
+            updatedAt
+            createdAt
+            __typename
+          }
+          userID
+          user {
+            id
+            author
+            birthday
+            isPolicies
+            hasCharacterization
+            email
+            gender
+            lastname
+            name
+            phone
+            updatedAt
+            createdAt
+            owner
+            __typename
+          }
+          updatedAt
+          createdAt
+          author
+          __typename
+        }
+        nextToken
+        __typename
+      }
+      stateRequest
+      userID
+      user {
+        id
+        author
+        birthday
+        isPolicies
+        hasCharacterization
+        email
+        gender
+        lastname
+        name
+        phone
+        updatedAt
+        createdAt
+        owner
+        __typename
+      }
+      author
+      updatedAt
+      createdAt
+      __typename
+    }
+    userID
+    user {
+      id
+      author
+      birthday
+      isPolicies
+      hasCharacterization
+      email
+      gender
+      lastname
+      name
+      phone
+      updatedAt
+      createdAt
+      owner
+      __typename
+    }
+    updatedAt
+    createdAt
+    author
+    __typename
+  }
+}

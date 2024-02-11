@@ -1,0 +1,53 @@
+<div class="col f-end">
+    <mat-form-field class="mw-300">
+        <mat-label>Enter a date range</mat-label>
+        <mat-date-range-input [formGroup]="range" [rangePicker]="picker">
+            <input matStartDate formControlName="start" placeholder="Start date">
+            <input matEndDate formControlName="end" placeholder="End date" (dateChange)="onDateEndChange($event)">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+</div>
+
+<div>
+    <div class="row f-start g-1">
+        <div class="card-eki mt-2 width-20">
+            <h4 class="c-primary">Intentos realizados</h4>
+            <p class="ft-7 ft-size-28 t-center">{{totalAttempts}}</p>
+        </div>
+        <div class="card-eki mt-2 width-20">
+            <h4 class="c-primary">Intentos completados</h4>
+            <p class="ft-7 ft-size-28 t-center">{{completeAttempts}}</p>
+        </div>
+        <div class="card-eki mt-2 width-20">
+            <h4 class="c-primary">Intentos pendientes</h4>
+            <p class="ft-7 ft-size-28 t-center">{{pendingsAttempts}}</p>
+        </div>
+    </div>
+</div>
+
+
+<div class="card-metrics my-2 py-3">
+    <app-linechart title="Intentos realizados" idChart="attemptsChar" [arrayData]="attemptsChart"></app-linechart>
+</div>
+
+<h4>
+    Respuestas examenes
+</h4>
+
+<div class="grid-container full-width">
+    <div class="col grid-item card-metrics py-2 px-2 heigth-300" *ngFor="let item of listQuestions">
+        <h5 class="p-0 m-0">
+            {{item.objectQuestion.question}}
+        </h5>
+
+        <app-barchart class="full-width" [arrayData]="item.answer" [idChart]="item.idClass" key="result"></app-barchart>
+
+        <div class="row-wrap g-1">
+            <p class="ft-size-12 p-0 m-0" *ngFor="let options of item.objectQuestion.options; let i=index">
+                {{i}} - {{options}}
+            </p>
+        </div>
+    </div>
+</div>

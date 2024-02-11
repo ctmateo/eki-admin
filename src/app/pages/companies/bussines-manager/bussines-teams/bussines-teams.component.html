@@ -1,0 +1,81 @@
+<br>
+<div class="full-width col f-between">
+
+    <div class="row f-between f-center">
+        <div>
+            <h2 class="title">Grupos</h2>
+            <span>Agrega grupos por area de la compañia</span>
+        </div>
+        <div>
+            <button mat-raised-button color="primary">Crear grupo</button>
+        </div>
+    </div>
+    <br />
+
+    <div class="filter card-eki row f-between g-1" [formGroup]="filterForm">
+        <div class="filter-options row f-between">
+            <mat-form-field appearance="outline">
+                <mat-label>Atributo</mat-label>
+                <mat-select formControlName="attribute">
+                    <mat-option *ngFor="let item of attr" [value]="item">{{
+                        item
+                        }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Condición</mat-label>
+                <mat-select formControlName="condition">
+                    <mat-option *ngFor="let item of conditions" [value]="item">{{
+                        item
+                        }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Valor</mat-label>
+                <input matInput type="text" formControlName="value" />
+            </mat-form-field>
+        </div>
+
+
+        <div class="buttons-filter" class="filter-actions g-1 row">
+            <button class="refresh" mat-raised-button mat-stroked-button><fa-icon class="btnRefresh"
+                    [icon]="['fas', 'rotate-right']"></fa-icon></button>
+
+            <button class="search btnSearch" mat-raised-button color="primary">Buscar</button>
+        </div>
+    </div>
+    <br>
+    <mat-card>
+        <br>
+        <div class="mat-elevation-z0">
+            
+            <mat-paginator [hidePageSize]="true" [length]="lengthData" [pageSize]="limitElements"
+                (page)="pageChange($event)" aria-label="Select page of periodic elements" pageSize="25">
+            </mat-paginator>
+            <div class="container-table custom-scroll">
+                <table mat-table [dataSource]="dataSource">
+
+                    <ng-container matColumnDef="id">
+                        <th class="mw-300" mat-header-cell *matHeaderCellDef> ID. </th>
+                        <td class="mw-300" mat-cell *matCellDef="let element"> {{element.id}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="name">
+                        <th class="mw-400" mat-header-cell *matHeaderCellDef> Nombre del grupo </th>
+                        <td class="mw-400" mat-cell *matCellDef="let element"> {{element.name}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="menbers">
+                        <th class="mw-200" mat-header-cell *matHeaderCellDef> Miembros </th>
+                        <td class="mw-200" mat-cell *matCellDef="let element"> {{element.menberCount}} </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                </table>
+            </div>
+        </div>
+    </mat-card>
+</div>

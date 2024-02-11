@@ -1,0 +1,14 @@
+<div class="content">
+    <h2 mat-dialog-title class="title-dialog">{{title}}</h2>
+    <div mat-dialog-content class="dialog-content">
+        <p class="lbl">Por favor, escribe el requisito previo para este curso</p>
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label >Requisito</mat-label>
+            <input matInput [(ngModel)]="requirement">
+        </mat-form-field>
+    </div>
+    <div mat-dialog-actions class="action-content">
+        <button class="cancel-button" mat-raised-button (click)="cancel()">Cancelar</button>
+        <button class="create-button" mat-raised-button [mat-dialog-close]="requirement" cdkFocusInitial>Crear</button>
+      </div>
+</div>

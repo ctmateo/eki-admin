@@ -1,0 +1,122 @@
+@import "../../../../styles"
+.content
+    margin-top: 30px
+    margin-left: 100px
+
+.selector-images
+    position: absolute
+    background-color: white
+    top: 300px
+    border-radius: 20px
+    z-index: 3000
+    left: 180px
+    border: 1px solid #a7a7a7
+    animation: fadeIn 0.5s
+    .container-images
+        display: grid
+        grid-template-columns: repeat(7, 1fr)
+        padding: 10px
+        .border-icons:hover
+            cursor: pointer
+        .border-icons
+            border: 1px solid #a7a7a7
+            padding: 3px
+            margin: 3px
+            text-align: center
+            border-radius: 5px
+        .icon-selector
+            font-size: x-large
+
+.color-course
+    display: flex
+    flex-direction: row
+    gap: 20px
+    .icon-class:hover
+        cursor: pointer
+    .icon-class
+        .icon-picker
+            .icon
+                color: $background-color
+                font-size: x-large
+                
+    .icon-picker
+        width: 50px
+        height: 50px
+        border-radius: 50px
+        display: flex
+        justify-content: center
+        align-items: center
+
+.create-requirements-button
+    color: $main-primary-color
+    width: 100%
+    border-style: dotted
+    border-color: #A5B6FF
+    display: flex
+    justify-content: center
+    align-items: center
+    p:hover
+        cursor: pointer
+        text-decoration: underline
+
+.requiremets-list
+    background-color: #fff
+    display: flex
+    justify-content: space-between
+    align-items: center
+    flex-direction: row
+    margin-bottom: 15px
+    padding-inline: 15px
+    min-height: 60px
+    .icon
+        color: $main-primary-color
+    .requirements-name
+        display: flex
+        gap: 10px
+    .requirement-panel
+        display: flex
+        width: 20%
+        justify-content: flex-end
+        gap: 10px
+        .icon
+            color: $main-primary-color
+
+.teachers-table
+    display: flex
+    justify-content: center
+    flex-direction: column
+    border-radius: 10px
+    border: 1px solid #D5DDFF
+    width: 100%
+    .table-header
+        display: flex
+        justify-content: center
+        border-top-left-radius: 10px
+        border-top-right-radius: 10px
+        width: 100%
+        background-color: $main-primary-color
+        color: $background-color
+    .table-body
+        margin: 10px
+        display: flex
+        flex-direction: row
+        justify-content: space-between
+        .img-container
+            width: 30%
+            .teacher-img
+                width: 40px
+                height: 40px
+                border-radius: 20px
+        .name
+            width: 50%
+.buttons-container
+    width: 100%
+    height: 100px
+    text-align: right
+    .cancel-button
+        margin-right: 15px
+        color: $main-primary-color
+        border-color: $main-primary-color
+    .create-button
+        background-color: $main-primary-color
+        color: $background-color

@@ -1,0 +1,69 @@
+<br>
+<div class="full-width flex col f-center" *ngIf="form">
+    <div class="content page">
+        <div class="full-width title row f-between">
+            <div>
+                <h3>{{form.name}}</h3>
+            </div>
+            <div class="row g-1">
+                <button class="btn-save" mat-raised-button (click)="goToDetails()">
+                    <fa-icon class="icon" [icon]="['fas', 'close']"></fa-icon> &nbsp; Cancelar
+                </button>
+                <button class="btn-save" mat-raised-button color="primary" (click)="saveTest()">
+                    <fa-icon class="icon" [icon]="['fas', 'save']"></fa-icon> &nbsp; Guardar
+                </button>
+            </div>
+        </div>
+        <hr>
+        <br />
+        <div class="col g-2">
+            <div #QuestionArray class="card-eki col" *ngFor="let item of questions;let j = index" tabindex="0">
+                <h4 class="my-1">Enunciado de la pregunta</h4>
+                <mat-form-field appearance="outline">
+                    <textarea rows="3" type="text" matInput id="description"
+                        [value]="item.objectQuestion.question" (change)="changeQuestion($event.target, item.sortIndex)"></textarea>
+                </mat-form-field>
+                <div class="col">
+                    <div class="row full-width f-center g-1"
+                        *ngFor="let option of item.objectQuestion.options; let i = index">
+
+                        <p>{{i}}</p>
+                        <mat-form-field class="options">
+                            <input type="text" matInput id="name" maxlength="24" [value]="option" (change)="changeValueOption($event.target,i,item.sortIndex)"/>
+                        </mat-form-field>
+
+                        <div class="error col f-center"
+                            [ngClass]="{'select-invalid': i != item.objectQuestion.response}">
+                            <fa-icon class="icon" [icon]="['fas', 'close']"></fa-icon>
+                        </div>
+
+                        <div class="correct col f-center"
+                            [ngClass]="{'select-correct': i == item.objectQuestion.response}"
+                            (click)="addResponse(i, item.sortIndex)">
+                            <fa-icon class="icon" [icon]="['fas', 'check']"></fa-icon>
+                        </div>
+
+                        <fa-icon class="icon delete" [icon]="['fas', 'close']"
+                            (click)="deleteOption(i, item.sortIndex)"></fa-icon>
+                    </div>
+                </div>
+                <p class="link-option" (click)="addElementOption(item.sortIndex)">Añadir opcion</p>
+                <div class="row f-end g-1">
+                    <div class="card-actions col f-center" (click)="addNewQuestion(j)">
+                        <fa-icon class="icon" [icon]="['fas', 'plus']"></fa-icon>
+                    </div>
+                    <div class="card-actions col f-center" (click)="changePositionArray(j, j+1)"
+                        *ngIf="j < questions.length - 1">
+                        <fa-icon class="icon" [icon]="['fas', 'arrow-down']"></fa-icon>
+                    </div>
+                    <div class="card-actions col f-center" (click)="changePositionArray(j, j-1)" *ngIf="j>=1">
+                        <fa-icon class="icon" [icon]="['fas', 'arrow-up']"></fa-icon>
+                    </div>
+                    <div class="card-actions col f-center" (click)="removeQuestion(j)">
+                        <fa-icon class="icon" [icon]="['fas', 'trash']"></fa-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

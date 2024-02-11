@@ -1,0 +1,42 @@
+<div mat-dialog-title class="col f-center" style="max-height: 72px;">
+    <h2 class="title-dialog">Crear usuario administrador</h2>
+</div>
+<hr>
+
+<form [formGroup]="userForm">
+    <mat-dialog-content class="mat-typography">
+        <div class="col g-1">
+            <mat-form-field appearance="outline">
+                <mat-label>Nombre: </mat-label>
+                <input type="text" matInput formControlName="name" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Apellido:</mat-label>
+                <input type="text" matInput formControlName="lastName" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Correo electronico: </mat-label>
+                <input type="email" matInput formControlName="email" email="true" />
+                <mat-error *ngIf="userForm.get('email')?.hasError('emailExists')">
+                    correos electrónico destinado a otro usuario
+                  </mat-error>
+            </mat-form-field>
+            <div style="display: flex; flex-direction: row; gap:10px">
+                <mat-form-field style="width: 33%;" appearance="outline">
+                    <mat-label>Código</mat-label>
+                    <input type="number" matInput formControlName="codeCountry" />
+                </mat-form-field>
+                <mat-form-field style="width: 65%;" appearance="outline">
+                    <mat-label>Teléfono</mat-label>
+                    <input type="tel" matInput formControlName="phoneNumber" />
+                </mat-form-field>
+            </div>
+        </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="action-dialog" align="end">
+        <button class="cancel-button" (click)="cancel()" mat-elevation-z0 mat-stroked-button>Cancelar</button>
+        <button class="create-button" color="primary" mat-raised-button [disabled]="isProcessing"
+            (click)="create()">Crear</button>
+    </mat-dialog-actions>
+</form>

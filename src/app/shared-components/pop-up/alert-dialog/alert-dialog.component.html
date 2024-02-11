@@ -1,0 +1,18 @@
+<div mat-dialog-title class="full-width col f-center" style="max-height: 72px;">
+    <h2 class="title-dialog">
+        Alerta
+    </h2>
+</div>
+<hr>
+
+<mat-dialog-content class="mat-typography">
+    <p [innerHTML]="message"> </p>
+    <br>
+</mat-dialog-content>
+
+<mat-dialog-actions class="action-dialog" align="end">
+    <div class="flex row full-width f-end">
+
+        <button mat-raised-button mat-dialog-close color="primary">ok</button>
+    </div>
+</mat-dialog-actions>

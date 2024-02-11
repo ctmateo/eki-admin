@@ -1,0 +1,82 @@
+<p>ticket/{{ idReport }}</p>
+<div class="chat-container component">
+  <div class="message-container full-width">
+    <div class="window-message">
+      <div class="container-messages">
+        <div
+          [ngClass]="{
+            'block-message': item.userID === userStatusMessage,
+            'block-message-start': item.userID !== userStatusMessage
+          }"
+          *ngFor="let item of getRequestMessage"
+        >
+          <div
+            [ngClass]="{
+              message: item.userID === userStatusMessage,
+              'opposing-message': item.userID !== userStatusMessage
+            }"
+          >
+            <p>{{ item.menssages }}</p>
+          </div>
+          <div class="data-message">
+            <span class="name">
+              {{ item.userID === userStatusMessage ? "Tu" : dataUserReport.name + ' ' + dataUserReport.lastname }}
+            </span>
+            <span>{{ utils.convertToDateCollaborator(item.createdAt) }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      [ngClass]="{ 'write-box': true, focused: focusOn }"
+      [formGroup]="messageForm"
+      (keydown.enter)="handleKeyEnter()"
+    >
+      <textarea
+        (focus)="focusOn = true"
+        (blur)="focusOn = false"
+        placeholder="Escribe tu respuesta"
+        formControlName="message"
+        [value]="handleFormControl()"
+        (keydown)="behaviorTextArea($event)"
+      ></textarea>
+      <div
+        [ngClass]="{
+          'element-opacity': true,
+          'isblock': buttonDisabled,
+          'full': !buttonDisabled
+        }"
+      >
+        <app-reusable-button
+          [buttonText]="'Enviar'"
+          [isDisabled]="buttonDisabled"
+          [clickOnce]="false"
+          (buttonClick)="handleButtonClick()"
+        ></app-reusable-button>
+      </div>
+    </div>
+  </div>
+  <div class="config-message width-40">
+    <h2>Cerrar la conversación</h2>
+    <div class="buttons-config">
+      <button (click)="updateStateRequest('UNSOLVED')" class="close">
+        <fa-icon class="icon" [icon]="['fas', 'close']"></fa-icon>
+      </button>
+      <button (click)="updateStateRequest('SOLVED')" class="check">
+        <fa-icon class="icon" [icon]="['fas', 'check']"></fa-icon>
+      </button>
+    </div>
+    <div class="info-config">
+      <h2>Apertura</h2>
+      <p>{{ dateCreateReport }}</p>
+      <h2>Cierre</h2>
+      <p></p>
+    </div>
+    <div class="data-client">
+      <h2>Datos del cliente</h2>
+      <p>{{ dataUserReport.name }} {{ dataUserReport.lastname }}</p>
+      <p>{{ dataUserReport.phone }}</p>
+      <p>{{ dataUserReport.email }}</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="container-delete">
+  <h1 mat-dialog-title>Borrar infografía</h1>
+  <div class="bottom-line"></div>
+  <div class="dialog-content" mat-dialog-content>
+    <p *ngIf="contentModuleId">
+      No es posible eliminar la infografía. Este archivo esta asociado al
+      contenido del curso con el id {{ idForm }}
+      <span>Para eliminarlo no debe estar asociado a un curso.</span>
+    </p>
+    <p *ngIf="!contentModuleId">
+      ¿Estás seguro de que deseas eliminar esta infografía?
+      <span>Esta acción no se puede deshacer y los cambios serán permanentes.</span>
+    </p>
+
+  </div>
+  <div class="buttons" mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cancelar</button>
+    <button (click)="delete()" class="btnDelete" color="primary" mat-raised-button [disabled]="contentModuleId">
+      Continuar
+    </button>
+  </div>
+</div>

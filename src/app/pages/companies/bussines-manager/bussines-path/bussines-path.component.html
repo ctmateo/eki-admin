@@ -1,0 +1,117 @@
+<br>
+<div class="full-width col">
+  <div class="col f-start">
+    <div>
+      <h2 class="title">Rutas en tendencia</h2>
+    </div>
+    <div class="full-width">
+      <owl-carousel-o *ngIf="hasLimitCourse" class="full-width" [options]="customOptions">
+        <ng-template carouselSlide *ngFor="let path of trendingPath">
+          <div class="full-width col f-start" (click)="openPathCatalog(path)">
+            <div class="item-trending" [ngStyle]="{'background-image': 'url(' + path.keyImagePresentation + ')'}">
+            </div>
+            <h4> {{path.name}}</h4>
+          </div>
+        </ng-template>
+      </owl-carousel-o>
+      <div *ngIf="!hasLimitCourse" class="full-width col f-between">
+        <div class="full-width row f-start g-3">
+          <div *ngFor="let path of trendingPath">
+            <div class="item-trending" [ngStyle]="{'background-image': 'url(' + path.keyImagePresentation + ')'}">
+            </div>
+            <h3> {{path.name}}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+
+  <div class="row f-between f-center">
+    <div>
+      <h2 class="title">Rutas de aprendizaje</h2>
+      <span style="font-weight: 400;">
+        Agrega las rutas del catálogo, según la necesidad de tu negocio.</span>
+    </div>
+    <div>
+      <button mat-raised-button color="primary" (click)="openPathCatalog()">Agregar ruta</button>
+    </div>
+  </div>
+  <br>
+  <div class="filter card-eki row f-between g-1" [formGroup]="filterForm">
+    <div class="filter-options row f-between">
+      <mat-form-field appearance="outline">
+        <mat-label>Atributo</mat-label>
+        <mat-select formControlName="attribute">
+          <mat-option *ngFor="let item of attr" [value]="item">{{
+            item
+            }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Condición</mat-label>
+        <mat-select formControlName="condition">
+          <mat-option *ngFor="let item of conditions" [value]="item">{{
+            item
+            }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Valor</mat-label>
+        <input matInput type="text" formControlName="value" />
+      </mat-form-field>
+    </div>
+
+
+    <div class="buttons-filter" class="filter-actions g-1 row">
+      <button class="refresh" mat-raised-button mat-stroked-button><fa-icon class="btnRefresh"
+          [icon]="['fas', 'rotate-right']"></fa-icon></button>
+
+      <button class="search btnSearch" mat-raised-button color="primary">Buscar</button>
+    </div>
+  </div>
+  <br>
+
+  <mat-card>
+    <br>
+    <div class="mat-elevation-z0">
+      <mat-paginator aria-label="Select page of periodic elements" pageSize="25">
+      </mat-paginator>
+      <div class="container-table custom-scroll">
+        <table mat-table [dataSource]="dataSource">
+
+          <!-- <ng-container matColumnDef="id">
+            <th class="mw-400" mat-header-cell *matHeaderCellDef> ID. </th>
+            <td class="mw-400" mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container> -->
+
+          <ng-container matColumnDef="name">
+            <th class="mw-300" mat-header-cell *matHeaderCellDef> Ruta </th>
+            <td class="mw-300" mat-cell *matCellDef="let element"> {{element.learningPath.name}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="inscribed">
+            <th mat-header-cell *matHeaderCellDef> Inscritos </th>
+            <td mat-cell *matCellDef="let element"> {{element.inscribed}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="completed">
+            <th mat-header-cell *matHeaderCellDef> Finalizados </th>
+            <td mat-cell *matCellDef="let element"> {{element.completed}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="deserts">
+            <th mat-header-cell *matHeaderCellDef> Abandonados</th>
+            <td mat-cell *matCellDef="let element"> {{element.deserts}} </td>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="utils.goToRouter('companies/dashboard/' + idBussines + '/path/' + row.id);"></tr>
+        </table>
+      </div>
+    </div>
+  </mat-card>
+</div>

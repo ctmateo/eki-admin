@@ -1,0 +1,159 @@
+<div class="full-width flex col f-center" *ngIf="form">
+    <div class="content page">
+        <div class="title row">
+            <div>
+                <h3>{{form.name}}</h3>
+            </div>
+            <div>
+                <button (click)="goToEdit()" mat-raised-button class="btn-save"> <fa-icon class="icon"
+                        [icon]="['fas', 'pen-to-square']"></fa-icon>
+                    Editar</button>
+            </div>
+        </div>
+        <br />
+        <div>
+            <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" style=" overflow: hidden !important;"
+                (selectedTabChange)="changeTestTab($event)">
+                <mat-tab label="Previsualizar" style="overflow: hidden !important;">
+                    <div class="content-tab" style="overflow: hidden !important;">
+                        <div class="preview row f-wrap" style="overflow: hidden !important;">
+                            <div class="visualizer" *ngIf="questionsLength > 0">
+                                <div class="question-view">
+                                    <div class="head col f-center">
+                                        <h3>{{form.name}}</h3>
+                                    </div>
+                                    <div class="content col">
+                                        <div class="title-question">
+                                            <p [align]="'center'"> {{currentQuestion.question}} </p>
+                                        </div>
+                                        <br>
+                                        <div class="options custom-scroll">
+
+                                            <div *ngIf="currentType == 'MULTIPLE_CHOISE'">
+                                                <div class="col f-center" (click)="onButtonMultipleClick($event)">
+                                                    <button class="option-multiple row filterForm"
+                                                        *ngFor="let option of options">
+                                                        {{option}}
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            <div *ngIf="currentType == 'SINGLE_CHOICE'">
+                                                <div class="col f-center" (click)="onButtonGroupClick($event)">
+                                                    <div *ngFor="let option of options; let i = index"
+                                                        [attr.data-index]="i">
+                                                        <button class="option-multiple row f-center"
+                                                            *ngIf="questionResponse !== i">
+                                                            {{option}}
+                                                        </button>
+                                                        <button class="option-multiple-select row f-center"
+                                                            *ngIf="questionResponse === i">
+                                                            {{option}}
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div *ngIf="currentType == 'PREPOSITION'">
+                                                <div class="col f-center" (click)="onButtonGroupClick($event)">
+                                                    <button class="option-multiple row fa-icon">
+                                                        Verdadero
+                                                    </button>
+                                                    <button class="option-multiple row f-center">
+                                                        Falso
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            <div *ngIf="currentType == 'QUALIFICATION'">
+
+                                                <div class="col f-center">
+                                                    <bar-rating [rate]="5" [max]="10">
+                                                        <ng-template ratingInactive>
+                                                            <fa-icon [icon]="['far', 'star']" [fixedWidth]="true"
+                                                                size="lg" style="color:
+                                                            #d2d2d2"></fa-icon>
+                                                        </ng-template>
+
+                                                        <ng-template ratingActive>
+                                                            <fa-icon [icon]="['fas', 'star']" [fixedWidth]="true"
+                                                                size="lg" style="color:
+                                                            #FFC929"></fa-icon>
+                                                        </ng-template>
+
+                                                        <ng-template ratingFraction>
+                                                            <fa-icon [icon]="['fas', 'star-half-alt']"
+                                                                [fixedWidth]="true" size="lg" style="color:
+                                                            #FFC929"></fa-icon>
+                                                        </ng-template>
+                                                    </bar-rating>
+                                                </div>
+                                            </div>
+                                            <div *ngIf="currentType == 'OPEN_QUESTION'" class="col f-center">
+                                                <div class="open-question">
+                                                    <mat-form-field appearance="outline" class="col f-center">
+                                                        <textarea rows="8" cols="120" matInput
+                                                            placeholder="Escribe tu respuesta"></textarea>
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="actions">
+                                        <div class="row end" *ngIf="!istheEnd">
+                                            <button mat-stroked-button class="btn-jump" (click)="nextQuestion()">
+                                                Saltar</button>
+                                        </div>
+                                        <button *ngIf="istheEnd" mat-stroked-button class=" btn-replay"
+                                            (click)="getQuestion()">
+                                            <fa-icon class="icon" [icon]="['fas', 'repeat']"></fa-icon>
+                                            &nbsp; &nbsp; Repetir</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="data-content col">
+                                <p><strong> Nombre del formulario</strong></p>
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                    <input matInput disabled value="{{form.name}}">
+                                </mat-form-field>
+                                <p><strong> Url del formulario</strong></p>
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                    <input matInput disabled value="{{urlForm}}">
+                                    <button matSuffix mat-icon-button aria-label="Clear" (click)="copieUrl()">
+                                        <fa-icon class="icon-active" [icon]="['fas', 'copy']"></fa-icon>
+                                    </button>
+                                </mat-form-field>
+                                <p><strong> Estado de publicacion</strong></p>
+                                <mat-card class="card-eki">
+                                    <div class="row f-between">
+                                        <p><strong>Curso al que pertenece:</strong> <br>
+                                            {{this.nameCourse}}</p>
+                                        <p (click)="checkPublish()">Publico <br>
+                                            <mat-slide-toggle [checked]="isPublish"
+                                                [disabled]="true"></mat-slide-toggle>
+                                        </p>
+                                    </div>
+                                    <p><strong>Modulo al que pertenece:</strong> <br>
+                                        {{form.contentModule?.module?.nameModule}} </p>
+
+                                    <p><strong>Fecha de publicación:</strong> <br> {{form.createdAt}}</p>
+
+                                    <p><strong>Fecha ultima actualización:</strong> <br> {{form.updatedAt}}</p>
+                                </mat-card>
+                            </div>
+                        </div>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Registros">
+                    <app-registers #registerTab></app-registers>
+                </mat-tab>
+                <mat-tab label="Metricas">
+                    <app-metrics #kpiTab *ngIf="tabSelected == 'Metricas'"></app-metrics>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+</div>

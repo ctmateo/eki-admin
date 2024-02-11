@@ -1,0 +1,35 @@
+<div class="content">
+  <div class="row" [formGroup]="filterDateForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Enter a date range</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input formControlName="start" matStartDate placeholder="Fecha inicio">
+        <input formControlName="end" matEndDate placeholder="Fecha fin">
+      </mat-date-range-input>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+  </div>
+  <div class="charts">
+    <app-linechart [arrayData]="lineChartData" title="Usuarios registrados"
+      idChart="collaboratorLineChart"></app-linechart>
+    <br>
+    <app-barchart [arrayData]="genderChart" title="Genero" idChart="collaboratorGender" key="gender"></app-barchart>
+    <br>
+    <app-barchart [arrayData]="economicSectorChart" title="Sector economico" idChart="collaboratorEcoSector"
+      key="economicSector"></app-barchart>
+    <br>
+    <app-barchart [arrayData]="populationSectorChart" title="Grupo social" idChart="collaboratorPopSector"
+      key="populationSector"></app-barchart>
+    <br>
+    <app-barchart [arrayData]="knowUsByChart" title="Desde donde nos conocen" idChart="collaboratorKnowUsBy"
+      key="knowUsBy"></app-barchart>
+    <br>
+    <app-barchart [arrayData]="deviceChart" title="Dispositivos de conexión" idChart="collaboratorDevice"
+      key="device"></app-barchart>
+    <br>
+    <app-barchart [arrayData]="accessInternetChart" title="Acceso de internet" idChart="collaboratorAccessInternet"
+      key="accessInternet"></app-barchart>
+  </div>
+
+</div>

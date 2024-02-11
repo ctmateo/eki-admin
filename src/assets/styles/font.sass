@@ -1,0 +1,13 @@
+@each $prop, $value in ( 1: 100, 2: 200, 3: 300, 4: 400, 5: 500, 6: 600, 7: 700, 8: 800, 9: 900)
+  .ft-#{$prop}
+    font-weight: $value!important
+
+.t-center
+  text-align: center
+  
+.t-end
+  text-align: end
+
+@each $prop, $value in ( 10: 10px, 12: 12px, 16: 16px, 18: 18px, 22: 22px, 28: 28px, 32: 32px,)
+  .ft-size-#{$prop}
+    font-size: $value!important

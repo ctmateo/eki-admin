@@ -1,0 +1,34 @@
+<div class="full-width flex col f-center">
+  <div class="content page">
+    <h3>Nueva ruta</h3>
+    <hr />
+    <br />
+    <div class="col">
+      <form [formGroup]="routeForm">
+        <mat-form-field style="width: 100%" appearance="outline">
+          <mat-label>Nombre de la ruta: </mat-label>
+          <input type="text" matInput />
+        </mat-form-field>
+        <mat-form-field style="height: 150px; width: 100%" appearance="outline">
+          <mat-label>Descripción larga: </mat-label>
+          <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+            cdkAutosizeMaxRows="5"></textarea>
+        </mat-form-field>
+        <h3>Imagen de presentación de la ruta:</h3>
+        <span>Agregue un video mp4 (maximo 120 segundos)</span>
+        <br />
+        <app-add-file [title]="'Arrastra una imagen aqui'"> </app-add-file>
+        <br />
+        <h3>Video de presentación del curso:</h3>
+        <span>Agregue una imagen con relación de aspecto 4x3</span>
+        <br />
+        <app-add-file [title]="'Arrastra un video aqui'"> </app-add-file>
+        <br />
+      </form>
+      <div class="buttons-container">
+        <button class="cancel-button" (click)="cancel()" mat-elevation-z0 mat-raised-button>Cancelar</button>
+        <button class="create-button" mat-raised-button>Crear</button>
+      </div>
+    </div>
+  </div>
+</div>

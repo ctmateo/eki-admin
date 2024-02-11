@@ -1,0 +1,41 @@
+@import "../../../../styles"
+.content
+    width: 100%
+    .buttons
+        width: 100%
+        height: auto
+        display: flex
+        justify-content: flex-end
+        flex-direction: row
+        gap: 10px
+    .card
+        width: 100%
+        .header
+            display: flex
+            flex-direction: row
+            width: 100%
+            justify-content: space-between
+            .info-ticket
+                display: flex
+                flex-direction: column
+                .name-container
+                    display: flex
+                    flex-direction: row
+                    justify-content: space-between
+                    .select
+                        padding: 5px
+                        width: 55%
+                        border-radius: 5px
+        .card-content
+            display: flex
+            flex-direction: row
+            justify-content: space-between
+            .button-open
+                display: flex
+                align-items: center
+                .button-open-color
+                    background-color: $main-primary-color
+                    color: $background-color
+
+::ng-deep .mat-mdc-card-header-text
+    display: none !important

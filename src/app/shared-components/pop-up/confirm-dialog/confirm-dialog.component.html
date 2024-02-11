@@ -1,0 +1,18 @@
+<div mat-dialog-title class="full-width col f-center" style="max-height: 72px;">
+    <h2 class="title-dialog">
+        {{title}}
+    </h2>
+</div>
+<hr>
+
+<mat-dialog-content class="mat-typography">
+    <p [innerHTML]="message">   </p>
+    <br>
+</mat-dialog-content>
+
+<mat-dialog-actions class="action-dialog" align="end">
+    <div class="flex row full-width f-end">
+        <button mat-button mat-dialog-close>Cancelar</button>
+        <button mat-raised-button color="primary" (click)="confirmAction()">Confirmar</button>
+    </div>
+</mat-dialog-actions>

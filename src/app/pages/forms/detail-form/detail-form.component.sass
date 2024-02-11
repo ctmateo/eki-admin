@@ -1,0 +1,110 @@
+@import "../../../../styles"
+
+.content
+    .title
+        display: flex
+        justify-content: space-between
+        align-items: flex-end
+        font-weight: bold
+
+.btn-save
+    background: $main-primary-color!important
+    color: white!important
+    width: 160px
+    margin-left: 5px
+
+.btn-delete
+    background: $text-second-color!important
+    color: white!important
+    width: 160px
+
+.icon
+    color: white
+
+.icon-active
+    color: $text-second-color
+
+.content-tab
+    margin-top: 15px
+    .preview
+        .visualizer
+            width: 50%
+            padding: 5px
+            .question-view
+                padding: 10px
+                height: 680px
+                width: 95%
+                background: white
+                border-radius: 12px
+                border: 2px solid #D5DDFF
+                .head
+                    width: 100%
+                    h3
+                        color: $main-primary-color!important
+                .content
+                    height: 75%
+                    .title-question
+                        height: auto
+                    .options
+                        height: 90%
+                        width: 100%
+                        overflow: hidden
+                        .option-multiple-select
+                            background: $main-primary-light-color
+                            border: 1px solid #D5DDFF
+                            border-radius: 12px
+                            margin: 4px
+                            width: 360px
+                            gap: 5
+                            padding: 12px
+                        .option-multiple
+                            border: 1px solid #D5DDFF
+                            border-radius: 12px
+                            background: white
+                            margin: 4px
+                            width: 360px
+                            gap: 5
+                            padding: 12px
+                        .option-multiple:hover
+                            background: $main-primary-light-color
+                        .option-multiple:active
+                            background: $main-primary-color
+                            color: white
+                        .active
+                            background: $main-primary-color
+                            color: white
+                        .open-question
+                            width: 80%
+                    .options:hover
+                        overflow: auto!important
+                .actions
+                    width: 100%
+                    margin-bottom: 15px
+                    .btn-comfir
+                        background: $main-primary-color!important
+                        color: white!important
+                        width: 160px
+                        margin-left: 5px
+                    .btn-comfir:disabled
+                        background: $text-second-color!important
+                        color: white!important
+                        width: 160px
+                        margin-left: 5px
+                    .btn-jump
+                        background: white!important
+                        color: $main-primary-color!important
+                        width: 160px
+                        margin-left: 5px
+                    .btn-replay
+                        background: white!important
+                        color: $main-primary-color!important
+                        width: 100%
+                        margin-left: 5px
+                        .icon
+                            color: $main-primary-color!important
+                        
+        .data-content
+            width: 50%
+            
+::ng-deep.mat-mdc-tab-bod
+    overflow: hidden

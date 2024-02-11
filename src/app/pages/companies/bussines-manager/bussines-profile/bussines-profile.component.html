@@ -1,0 +1,130 @@
+<br>
+<div class="full-width row f-between" *ngIf="company">
+    <div class="col left-panel">
+        <div class="card-eki">
+            <h4>Perfil de empresa</h4>
+            <br>
+            <div class="row" style="gap: 15px;">
+                <div class="logo-company" [style.background-image]="'url(' + logo + ')'"></div>
+                <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)" accept=".jpg">
+                <button mat-button (click)="selectFile()">Subir logo</button>
+                <button mat-button color="warn">Remover Logo</button>
+            </div>
+            <br><br>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Id de la compañia</mat-label>
+                <input matInput value="{{company.id}}" readonly>
+                <fa-icon class="icon-button" matSuffix [icon]="['fas', 'copy']"></fa-icon>
+            </mat-form-field>
+            <br>
+
+            <div class="col">
+                <h4>Estado de la cuenta</h4>
+                <p>Activa</p>
+            </div>
+            <br>
+
+            <div class="col">
+                <h4>Días para vencimiento</h4>
+                <p>12 días </p>
+            </div>
+            <br>
+        </div>
+        <div class="card-eki">
+            <div class="row full-width f-between">
+                <div class="col">
+                    <h4>Fecha de subcripcion</h4>
+                    <p>12 junio del 2022</p>
+                </div>
+
+                <div class="col">
+                    <h4>Días para vencimiento</h4>
+                    <p>12 marzo del 2023 </p>
+                </div>
+            </div>
+            <br>
+            <div class="row f-end">
+                <button mat-raised-button color="primary">Ampliar subcripción</button>
+            </div>
+        </div>
+        <div class="card-eki">
+            <div class="row full-width f-between">
+                <div class="col">
+                    <h4>Limite de subscritos</h4>
+                    <p>{{company.limitUsers}} Cuentas</p>
+                </div>
+            </div>
+            <br>
+            <div class="row f-end">
+                <button mat-raised-button color="primary">Ampliar limite</button>
+            </div>
+        </div>
+    </div>
+    <div class="col rigth-panel">
+        <div class="card-eki">
+            <h4>Informaciom de empresa</h4>
+            <br>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Correo de contacto</mat-label>
+                <input matInput value="{{company.user.email}}" readonly disabled="true">
+            </mat-form-field>
+            <br><br>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Nombre de la compañia</mat-label>
+                <input matInput value="{{company.nameCompany}}" readonly>
+            </mat-form-field>
+            <br><br>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Nit</mat-label>
+                <input matInput value="{{company.nit}}" readonly>
+            </mat-form-field>
+            <br><br>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Numero de contacto</mat-label>
+                <input matInput value="{{company.user.phone}}" readonly>
+            </mat-form-field>
+            <br><br>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Nombre Representante legal</mat-label>
+                <input matInput value="{{company.legalName}}" readonly>
+            </mat-form-field>
+            <br><br>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Apellido Representante legal</mat-label>
+                <input matInput value="{{company.legalSurname}}" readonly>
+            </mat-form-field>
+            <br><br>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Tipo de documento Representante legal</mat-label>
+                <input matInput value="{{company.legalDocument}}" readonly>
+            </mat-form-field>
+            <br><br>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Numero de documento</mat-label>
+                <input matInput value="{{company.legalDocumentNumber}}" readonly>
+            </mat-form-field>
+            <br><br>
+
+            <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Industria</mat-label>
+                <input matInput value="{{company.economicSector.category}}" readonly>
+            </mat-form-field>
+            <br><br>
+
+            <div class="row f-end">
+                <button mat-raised-button color="primary" [disabled]="hasUpdate">Actualizar</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>

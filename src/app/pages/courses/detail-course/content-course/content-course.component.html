@@ -1,0 +1,56 @@
+<div class="buttons-container">
+    <button mat-raised-button class="button-edit"><fa-icon class="icon" [icon]="['fas', 'plus']"></fa-icon></button>
+    <button *ngIf="moduleSelected.length <= 1" mat-raised-button [disabled]="buttonsDisabled" class="button-edit"
+        (click)="moveUp()"><fa-icon class="icon" [icon]="['fas', 'arrow-up']"></fa-icon>
+    </button>
+    <button *ngIf="moduleSelected.length <= 1" mat-raised-button [disabled]="buttonsDisabled" class="button-edit"
+        (click)="moveDown()"><fa-icon class="icon" [icon]="['fas', 'arrow-down']"></fa-icon>
+    </button>
+    <button mat-raised-button class="button-edit"><fa-icon class="icon" [icon]="['fas', 'trash']"></fa-icon> </button>
+
+</div>
+<mat-accordion #matAccordion>
+    <mat-expansion-panel #matExpantion class="expantion-panel" (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false" *ngFor="let item of modules">
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                <mat-checkbox [(ngModel)]="item.isSelected" (change)="onCheckboxChange(item);">
+
+                </mat-checkbox>
+                {{item.nameModule}}
+            </mat-panel-title>
+            <mat-panel-description>
+
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="background">
+            <br>
+        </div>
+        <div class="content-body" cdkDropList (cdkDropListDropped)="drop($event, item.content.items)">
+            <div class="class-title" *ngFor="let class of item.content.items" cdkDrag>
+                <p class="half-width">
+                    <fa-icon *ngIf="class.typeContent == 'VIDEO_DOCUMENT' || class.typeContent == 'VIDEO'"
+                        class="icon icon-color" [icon]="['fas', 'video']"></fa-icon>
+                    <fa-icon *ngIf="class.typeContent == 'READING'" class="icon icon-color"
+                        [icon]="['fas', 'file-lines']"></fa-icon>
+                    <fa-icon *ngIf="class.typeContent == 'PODCAST'" class="icon icon-color"
+                        [icon]="['fas', 'podcast']"></fa-icon>
+                    <fa-icon *ngIf="class.typeContent == 'INFOGRAPHIC'" class="icon icon-color"
+                        [icon]="['fas', 'image']"></fa-icon>
+                    <fa-icon *ngIf="class.typeContent == 'TEST'" class="icon icon-color"
+                        [icon]="['fas', 'brain']"></fa-icon>
+                    <fa-icon *ngIf="class.typeContent == 'ACTIVITY'" class="icon icon-color"
+                        [icon]="['fas', 'dumbbell']"></fa-icon>
+                    <mat-checkbox [(ngModel)]="class.isSelected"></mat-checkbox>
+                    {{class.titleContent}}
+                </p>
+                <div class="half-width class-info">
+                    <!-- <strong *ngIf="class.typeContent == 'VIDEO_DOCUMENT' || class.typeContent == 'VIDEO'">{{class.classVideo.videoTime}}</strong> -->
+                    <div *ngIf="class.typeContent == 'VIDEO_DOCUMENT' || class.typeContent == 'VIDEO' || class.typeContent == 'INFOGRAPHIC'" class="visualize" (click)="visualizeContent(class)">Visualizar</div>
+                    <div *ngIf="class.typeContent == 'TEST'" class="visualize" (click)="goToExam(class)">Ver Evaluacion</div>
+                    <fa-icon class="icon" [icon]="['fas', 'bars']"></fa-icon>
+                </div>
+            </div>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>

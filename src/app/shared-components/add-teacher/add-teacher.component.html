@@ -1,0 +1,28 @@
+<div class="content">
+  <div class="title-content">
+    <h2>Asignar Docente</h2>
+  </div>
+  <mat-divider></mat-divider>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Nombre del docente: </mat-label>
+    <span matPrefix>
+      <fa-icon style="margin-left: 5px" class="icon" [icon]="['fas', 'magnifying-glass']"></fa-icon>
+      &nbsp;</span>
+    <input type="search" #search matInput (keyup)="onSearchChange(search.value)" />
+  </mat-form-field>
+
+  <div class="teachers-table" *ngIf="teachers.length > 0">
+    <div class="table-header">Nombre Completo</div>
+    <div class="table-body" *ngFor="let teacher of teachers let i = index">
+      <div class="img-container" [style.background-image]="'url(' + teacher.keyPhoto + ')'">
+      </div>
+      <div class="name">{{teacher.fullName}}</div>
+      <div class="check">
+        <mat-checkbox [checked]="itemSelected === i" (click)="selectTeacher(i,teacher)"></mat-checkbox>
+      </div>
+    </div>
+  </div>
+  <div class="full-width button-container">
+    <button style="text-align: right;" mat-raised-button color="primary" (click)="save()">Guardar</button>
+  </div>
+</div>

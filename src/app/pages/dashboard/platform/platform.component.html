@@ -1,0 +1,32 @@
+<div class="content">
+    <div class="platform-info">
+        <div class="info card-eki">
+            <strong class="title">Usuarios Activos</strong>
+            <br>
+            <strong class="value">{{numberUsers}}</strong>
+        </div>
+        <div class="info card-eki">
+            <strong class="title">Horas Visualización</strong>
+            <br>
+            <strong class="value">60</strong>
+        </div> 
+        <div class="info card-eki">
+            <strong class="title">Sesiones individuales</strong>
+            <br>
+            <strong class="value">700</strong>
+        </div>
+        <div class="info card-eki">
+            <strong class="title">Sesiones empresa</strong>
+            <br>
+            <strong class="value">345</strong>
+        </div>
+    </div>
+    <br>
+    <div class="chart-container">
+        <app-linechart class="linechart" [arrayData]="lineChartData" title="Sesiones diarias" idChart="userLineChart">
+        </app-linechart>
+        <br>
+        <app-barchart class="barchart" [arrayData]="barChartData" title="Empresas con usuarios registrados" idChart="companyBar" key="company"></app-barchart>
+    </div>
+    
+</div>

@@ -1,0 +1,27 @@
+<div mat-dialog-title class="col f-center" style="max-height: 72px;">
+    <h2 class="title-dialog"> Nuevo test</h2>
+</div>
+<hr>
+
+<form [formGroup]="testForm">
+    <mat-dialog-content #scrollDiv>
+        <div class="col g-1">
+
+            <mat-form-field appearance="outline">
+                <mat-label>Nombre del test</mat-label>
+                <input #formControl type="text" matInput formControlName="name" id="name" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+                <mat-label>Descripcion del test</mat-label>
+                <textarea rows="4" #formControl type="text" matInput formControlName="description" id="description"></textarea>
+            </mat-form-field>
+
+        </div>
+    </mat-dialog-content>
+
+    <mat-dialog-actions class="action-dialog" align="end">
+        <button class="cancel-button" mat-elevation-z0 mat-stroked-button mat-dialog-close>Cancelar</button>
+        <button class="create-button" color="primary" mat-raised-button (click)="create()">Crear</button>
+    </mat-dialog-actions>
+</form>

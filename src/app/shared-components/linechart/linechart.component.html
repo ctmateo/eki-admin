@@ -1,0 +1,33 @@
+<div class="linechart" (window:resize)="onResize($event)">
+    <div class="mode-select">
+        <mat-form-field class="select" appearance="outline">
+            <mat-label>Modo</mat-label>
+            <mat-select (selectionChange)="changeMode($event)" value="individual">
+                <mat-option value="individual">
+                    Individual
+                </mat-option>
+                <mat-option value="acumulado">
+                    Acumulado
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field class="select" appearance="outline">
+            <mat-label>Rango</mat-label>
+            <mat-select (selectionChange)="changeRange($event)" value="day">
+                <mat-option value="day">
+                    Dia
+                </mat-option>
+                <mat-option value="week">
+                    Semana
+                </mat-option>
+                <mat-option value="month">
+                    Mes
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <span class="title-chart">{{title}}</span>
+    <mat-spinner *ngIf="!infoReady" class="spinner-chart" mode="indeterminate" diameter="50"></mat-spinner>
+    <div [ngClass]="infoReady ? '' : 'hidden'" class="transation-char mat-elevation-z0" [id]="idChart" #containerTransactions>
+    </div>
+</div>

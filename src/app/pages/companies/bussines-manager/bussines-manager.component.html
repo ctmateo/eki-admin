@@ -1,0 +1,38 @@
+<div class="row f-end bussines-manager full-height">
+    <div class="bussines-content row full-height">
+        <div class="menu">
+            <div class="row">
+                <div class="logo-company" [style.background-image]="'url(' + logo + ')'"></div>
+                <h4>{{company?.nameCompany}}</h4>
+            </div>
+            <div class="options col">
+                <p class="item" [ngClass]="{'selected': selectMenu === 'collaborators'}"
+                    (click)="utils.goToRouter('companies/dashboard/' + idBussines + '/collaborators'); changeMenuSelect('collaborators')">
+                    Colaboradores</p>
+
+                <p class="item" [ngClass]="{'selected': selectMenu === 'teams'}"
+                    (click)="utils.goToRouter('companies/dashboard/' + idBussines + '/teams'); changeMenuSelect('teams')">
+                    Grupos</p>
+
+                <p class="item" [ngClass]="{'selected': selectMenu === 'path'}"
+                    (click)="utils.goToRouter('companies/dashboard/' + idBussines + '/path'); changeMenuSelect('path')">
+                    Rutas de aprendizaje</p>
+
+
+                <p class="item" [ngClass]="{'selected': selectMenu === 'metrics'}"
+                    (click)="utils.goToRouter('companies/dashboard/' + idBussines + '/metrics'); changeMenuSelect('metrics')">
+                    Metricas</p>
+
+
+                <p class="item" [ngClass]="{'selected': selectMenu === 'profile'}"
+                    (click)="utils.goToRouter('companies/dashboard/' + idBussines + '/profile') ; changeMenuSelect('profile')">
+                    Perfil</p>
+            </div>
+        </div>
+        <div class="full-width full-height col f-center-h detail scroll-dashboard">
+            <div class="page-manager">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</div>

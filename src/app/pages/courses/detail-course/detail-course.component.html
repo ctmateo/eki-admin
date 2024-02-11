@@ -1,0 +1,33 @@
+<div class="full-width flex col f-center">
+    <div class="content page">
+        <div class="title-content" *ngIf="course">
+            <h2>{{course.name}}</h2>
+            <mat-slide-toggle><h4>No publicado</h4></mat-slide-toggle>
+        </div>
+        <mat-divider></mat-divider>
+        <br>
+        <mat-tab-group *ngIf="infoReady" mat-align-tabs="start" [selectedIndex]="index" (selectedTabChange)="tabChange($event)">
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    Descripción
+                </ng-template>
+                <br>
+                <app-description-course [course]="course" *ngIf="index === 0"></app-description-course>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    Contenido
+                </ng-template>
+                <br>
+                <app-content-course [course]="courseId" *ngIf="index === 1"></app-content-course>
+            </mat-tab>
+            <mat-tab>
+                <ng-template mat-tab-label>
+                    Metricas
+                </ng-template>
+                <br>
+                <app-metrics-course [course]="course" *ngIf="index === 2"></app-metrics-course>
+            </mat-tab>
+        </mat-tab-group>
+    </div>
+</div>

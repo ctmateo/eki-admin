@@ -1,0 +1,23 @@
+<div class="full-width flex col f-center">
+  <div class="content page">
+    <mat-tab-group mat-align-tabs="start" (selectedTabChange)="tabChanged($event)" [selectedIndex]="tabIndex">
+      <mat-tab>
+        <ng-template mat-tab-label>
+          Académico
+        </ng-template>
+        <br>
+        <app-academic *ngIf="tabIndex === 0">
+        </app-academic>
+      </mat-tab>
+
+      <mat-tab>
+        <ng-template mat-tab-label>
+          Uso de plataforma
+        </ng-template>
+        <br>
+        <app-platform *ngIf="tabIndex === 1"></app-platform>
+      </mat-tab>
+
+    </mat-tab-group>
+  </div>
+</div>

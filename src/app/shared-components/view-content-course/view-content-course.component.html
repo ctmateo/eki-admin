@@ -1,0 +1,4 @@
+<video class="video" autoplay controls [src]="video" *ngIf="multimedia.typeContent == 'VIDEO' || multimedia.typeContent == 'VIDEO_DOCUMENT'" width="600">
+    This browser doesn't support HTML5
+</video>
+<img [src]="image" *ngIf="multimedia.typeContent == 'INFOGRAPHIC'" class="img-size">

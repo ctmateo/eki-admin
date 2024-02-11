@@ -1,0 +1,168 @@
+@import "../../../../../styles"
+.content
+    width: 100%
+    .title-content
+        width: 100%
+        display: flex
+        justify-content: space-between
+        .edit-button
+            text-decoration: underline
+            color: $main-primary-color
+            cursor: pointer
+    .course-data
+        display: flex
+        flex-direction: row
+        gap: 10px
+        .course-card
+            max-width: 40%
+            float: left
+            margin: 15px
+            padding: 12px
+            .chips
+                background-color: #D5DDFF
+            .image-course
+                width: 450px
+                height: 200px
+                .button-change-image:hover
+                    cursor: pointer
+                .button-change-image
+                    display: flex
+                    background-color: $main-primary-color
+                    color: $background-color
+                    width: 25px
+                    height: 25px
+                    border-radius: 50px
+                    justify-content: center
+                    position: relative
+                    bottom: 200px
+                    left: 415px
+                .file-upload-input
+                    display: none
+            .course-info
+                width: 100%
+                .course-photo
+                    width: 280px
+                    height: 150px
+                    background-repeat: no-repeat
+                    background-size: 280px 150px
+        .course-form
+            width: 70%
+            margin-top: 17px
+            .buttons-container
+                width: 100%
+                height: 100px
+                text-align: right
+                .cancel-button
+                    margin-right: 15px
+                    color: $main-primary-color
+                    border-color: $main-primary-color
+                .create-button
+                    background-color: $main-primary-color
+                    color: $background-color
+
+    .course-multimedia
+        display: flex
+        flex-direction: row
+        gap: 50px
+
+        .course-form
+            width: 70%
+            margin-top: 17px
+            .desc-long
+                width: 450px
+            .buttons-container
+                width: 100%
+                height: 100px
+                text-align: right
+                .cancel-button
+                    margin-right: 15px
+                    color: $main-primary-color
+                    border-color: $main-primary-color
+                .create-button
+                    background-color: $main-primary-color
+                    color: $background-color
+
+.create-requirements-button
+    color: $main-primary-color
+    width: 100%
+    border-style: dotted
+    border-color: #A5B6FF
+    display: flex
+    justify-content: center
+    align-items: center
+    p:hover
+        cursor: pointer
+        text-decoration: underline
+
+.requiremets-list
+    background-color: #fff
+    display: flex
+    justify-content: space-between
+    align-items: center
+    flex-direction: row
+    margin-bottom: 15px
+    padding-inline: 15px
+    min-height: 60px
+    .icon
+        color: $main-primary-color
+    .requirements-name
+        display: flex
+        gap: 10px
+    .requirement-panel
+        display: flex
+        width: 20%
+        justify-content: flex-end
+        gap: 10px
+
+.teachers-table
+    display: flex
+    justify-content: center
+    flex-direction: column
+    border-radius: 10px
+    border: 1px solid #D5DDFF
+    width: 100%
+    margin-top: 14px
+    .table-header
+        display: flex
+        justify-content: center
+        border-top-left-radius: 10px
+        border-top-right-radius: 10px
+        width: 100%
+        background-color: $main-primary-color
+        color: $background-color
+        margin-bottom: 3px
+    .table-body
+        margin: 10px
+        display: flex
+        flex-direction: row
+        justify-content: space-between
+        .img-container
+            width: 30%
+            background-size: cover
+            background-position: center
+            width: 40px
+            height: 40px
+            border-radius: 20px
+                
+        .name
+            width: 50%
+
+.upload-video-input
+    width: 97%
+.file-upload-input
+    display: none
+.button-change-video
+    background-color: $main-primary-color
+    color: $background-color
+    height: 56px
+    width: 3%
+    display: flex
+    align-items: center
+    justify-content: center
+    border-top-right-radius: 12px
+    border-bottom-right-radius: 12px
+
+.icon
+    color: $main-primary-color
+.icon-white
+    color: $background-color

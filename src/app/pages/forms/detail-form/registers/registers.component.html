@@ -1,0 +1,44 @@
+<mat-card class="card-eki mt-2" *ngIf="dataSource">
+    <br>
+
+    <div class="mat-elevation-z0">
+
+        <mat-paginator [hidePageSize]="true" [length]="lengthForm" [pageSize]="limitElements"
+            (page)="pageChange($event)" aria-label="Select page of periodic elements" pageSize="25">
+        </mat-paginator>
+
+        <div class="container-table custom-scroll">
+            <table mat-table [dataSource]="dataSource" class="table">
+
+                <ng-container matColumnDef="create">
+                    <th class="mw-250" mat-header-cell *matHeaderCellDef> Fecha de creación </th>
+                    <td class="mw-250" mat-cell *matCellDef="let element"> {{element.createdAt}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="name">
+                    <th class="mw-350" mat-header-cell *matHeaderCellDef> Colaborador </th>
+                    <td class="mw-350" mat-cell *matCellDef="let element"> 
+                        {{element.userData.user.name}} {{element.userData.user.lastname}}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="attemptScore">
+                    <th class="mw-350" mat-header-cell *matHeaderCellDef> Score </th>
+                    <td class="mw-350" mat-cell *matCellDef="let element">
+                        {{element.attemptScore}}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="isAttemptCompleted">
+                    <th class="mw-100" mat-header-cell *matHeaderCellDef> Esta completo </th>
+                    <td class="mw-100" mat-cell *matCellDef="let element">
+                        <mat-slide-toggle [checked]="element.isAttemptCompleted" [disabled]="true"></mat-slide-toggle>
+                    </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="resultAttempt(row.id, row.attemptScore)">
+                </tr>
+            </table>
+        </div>
+    </div>
+</mat-card>

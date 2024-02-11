@@ -1,0 +1,27 @@
+<div class="content">
+    <div class="academic-info">
+        <div class="info card-eki">
+            <strong class="title">Número de cursos</strong>
+            <br>
+            <strong class="value">{{numberCourses}}</strong>
+        </div>
+        <div class="info card-eki">
+            <strong class="title">Número de tags</strong>
+            <br>
+            <strong class="value">{{numberTags}}</strong>
+        </div>
+        <div class="info card-eki">
+            <strong class="title">Cursos iniciados</strong>
+            <br>
+            <strong class="value">700</strong>
+        </div>
+        <div class="info card-eki">
+            <strong class="title">Cursos finalizados</strong>
+            <br>
+            <strong class="value">345</strong>
+        </div>
+    </div>
+    <br>
+    <app-barchart *ngIf="dataReady" class="full-width" title="Temas" [arrayData]="barChartData" idChart="themesBar" key="company"></app-barchart>
+    <div style="height: 90px; width: 100%;"></div>
+</div>

@@ -1,0 +1,26 @@
+<mat-toolbar class="toolbar">
+    <div>
+        <img src="https://eki-public.s3.amazonaws.com/icon-web.png" style="width: 73px; height: 33px;">
+    </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; ">
+
+        <button mat-icon-button class="color-button">
+            <fa-icon class="icon" [icon]="['fas', 'circle-plus']"></fa-icon>
+        </button>
+
+        <button [matMenuTriggerFor]="menu" mat-mini-fab class="profile-icon">
+            {{ initials }}
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item>
+                <fa-icon class="icon-menu" [icon]="['fas', 'user']"></fa-icon>
+                <span>&nbsp; &nbsp; Perfil</span>
+            </button>
+            <button mat-menu-item (click)="signOut()">
+                <fa-icon class="icon-menu" [icon]="['fas', 'arrow-right-from-bracket']"></fa-icon>
+                <span>&nbsp; &nbsp; Logout</span>
+            </button>
+        </mat-menu>
+    </div>
+</mat-toolbar>

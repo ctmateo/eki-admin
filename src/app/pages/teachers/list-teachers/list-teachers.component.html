@@ -1,0 +1,95 @@
+<br>
+<div class="full-width flex col f-center">
+  <div class="content page">
+    <div class="row f-between f-center">
+      <div>
+        <h2 class="title">Docente</h2>
+      </div>
+      <div>
+        <button mat-raised-button color="primary" (click)="createTeacher()">Nuevo docente</button>
+      </div>
+    </div>
+    <br />
+    <div class="filter">
+      <div class="filter card-eki row f-between g-1" [formGroup]="filterForm">
+        <div class="filter-options row f-between">
+          <mat-form-field appearance="outline">
+            <mat-label>Atributo</mat-label>
+            <mat-select formControlName="attribute">
+              <mat-option *ngFor="let item of attr" [value]="item">{{
+                item
+                }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline">
+            <mat-label>Condición</mat-label>
+            <mat-select formControlName="condition">
+              <mat-option *ngFor="let item of conditions" [value]="item">{{
+                item
+                }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+  
+          <mat-form-field appearance="outline">
+            <mat-label>Valor</mat-label>
+            <input matInput type="text" formControlName="value" />
+          </mat-form-field>
+        </div>
+  
+        <div class="buttons-filter" class="filter-actions g-1 row">
+          <button class="refresh" mat-raised-button mat-stroked-button><fa-icon class="btnRefresh"
+              [icon]="['fas', 'rotate-right']"></fa-icon></button>
+  
+          <button class="search btnSearch" mat-raised-button color="primary">Buscar</button>
+        </div>
+      </div>
+
+      <br>
+      <mat-card class="card-eki">
+        <br>
+        <div class="mat-elevation-z0">
+          <mat-paginator [hidePageSize]="true" [length]="lengthTeachers" [pageSize]="limitElements" (page)="pageChange($event)"
+            aria-label="Select page of periodic elements">
+          </mat-paginator>
+          <div class="container-table custom-scroll">
+            <table mat-table [dataSource]="dataSource">
+
+              <!-- Position Column -->
+              <ng-container matColumnDef="createAt">
+                <th mat-header-cell *matHeaderCellDef class="mw-300"> Fecha de creación </th>
+                <td mat-cell *matCellDef="let element" class="mw-300"> {{element.createdAt}} </td>
+              </ng-container>
+
+              <!-- Name Column -->
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef class="mw-400"> Id </th>
+                <td mat-cell *matCellDef="let element" class="mw-400"> {{element.id}} </td>
+              </ng-container>
+
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef class="mw-300"> Nombre </th>
+                <td mat-cell *matCellDef="let element" class="mw-300"> {{element.fullName}} </td>
+              </ng-container>
+
+              <!-- Weight Column -->
+              <ng-container matColumnDef="phone">
+                <th mat-header-cell *matHeaderCellDef>Telefono </th>
+                <td mat-cell *matCellDef="let element"> {{element.user.phone}} </td>
+              </ng-container>
+
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="email">
+                <th mat-header-cell *matHeaderCellDef> Correo Electronico </th>
+                <td mat-cell *matCellDef="let element"> {{element.user.email}} </td>
+              </ng-container>
+
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

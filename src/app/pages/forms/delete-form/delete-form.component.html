@@ -1,0 +1,24 @@
+<div mat-dialog-title class="col f-center mt-1" style="max-height: 72px;">
+    <h2 class="title-dialog"> Elminar formulario {{nameForm}} </h2>
+</div>
+<hr>
+
+<mat-dialog-content #scrollDiv>
+    <div class="col g-1">
+
+        <p *ngIf="!contentModuleId" style="line-height: 22px; font-size: 16px;">¿Estás seguro de que deseas eliminar
+            este formulario? <br><br>
+            Esta acción no se puede deshacer y los cambios serán permanentes.</p>
+
+        <p *ngIf="contentModuleId" style="line-height: 22px; font-size: 16px;">
+            No se puede eliminar el formulario.
+            <br><br>
+            Este formulario está actualmente asignado a un curso y no se puede eliminar.
+        </p>
+    </div>
+</mat-dialog-content>
+
+<mat-dialog-actions class="action-dialog" align="end">
+    <button class="cancel-button" mat-elevation-z0 mat-stroked-button mat-dialog-close>Cancelar</button>
+    <button class="create-button" color="primary" mat-raised-button (click)="delete()" [disabled]="contentModuleId" >Aceptar</button>
+</mat-dialog-actions>

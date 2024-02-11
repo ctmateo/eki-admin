@@ -1,0 +1,168 @@
+<div class="content">
+  <div class="title-content">
+    <h2>Curso</h2>
+    <h4 class="edit-button" (click)="courseEditable = !courseEditable">Editar</h4>
+  </div>
+  <mat-divider></mat-divider>
+  <br>
+  <div class="course-data">
+    <div class="course-card card-eki" *ngIf="course">
+      <mat-chip-listbox>
+        <mat-chip-option *ngFor="let tag of course.tags.items" class="chips">{{tag.tag.name}}</mat-chip-option>
+      </mat-chip-listbox>
+      <br>
+      <div class="image-course">
+          <img [src]="image" class="image-course">
+          <label for="file-upload" class="button-change-image">
+            <fa-icon class="icon-white" [icon]="['fas', 'pen-to-square']"></fa-icon>
+          </label>
+        <input type="file" id="file-upload" class="file-upload-input" (change)="addImageFile($event)">
+      </div>
+      <div class="course-info">
+        <!-- <div class="course-photo" [ngStyle]="{'background-image': 'url(' +  + ')'}"></div> -->
+        <strong>{{course.name}}</strong>
+        <br>
+        <p>
+          {{course.descriptionCourse}}
+        </p>
+      </div>
+      <div class="button-buy">
+        <!-- <button mat-stroked-button color="primary">
+                    <fa-icon class="icon" [icon]="['fas', 'cart-shopping']"></fa-icon>
+                    Comprar
+                </button> -->
+        <div class="price">
+          <small>6 clases</small>
+          <small>8 horas</small>
+        </div>
+      </div>
+    </div>
+    <div class="course-form">
+      <form [formGroup]="courseDetailForm">
+        <div class="col full-width">
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre del curso: </mat-label>
+            <input matInput formControlName="name">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Descripción corta: </mat-label>
+            <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+              cdkAutosizeMaxRows="5" formControlName="descShort"></textarea>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Agregar tag</mat-label>
+            <mat-chip-grid #chipGrid aria-label="Fruit selection">
+              <mat-chip-row *ngFor="let tag of tags" (removed)="remove(tag)">
+                {{ tag }}
+                <button matChipRemove [attr.aria-label]="'remove ' + tag">
+                  <fa-icon [icon]="['fas', 'xmark']"></fa-icon>
+                </button>
+              </mat-chip-row>
+            </mat-chip-grid>
+            <input placeholder="Agrega un tag ..." #tagInput [formControl]="tagCtrl" [matChipInputFor]="chipGrid"
+              [matAutocomplete]="auto" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              (matChipInputTokenEnd)="add($event)" />
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+              <mat-option *ngFor="let filteredTag of filteredTags | async" [value]="filteredTag">
+                {{ filteredTag }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
+      </form>
+      <div class="buttons-container full-width" *ngIf="courseEditable">
+        <button class="cancel-button" (click)="cancel()" mat-elevation-z0 mat-raised-button>
+          Cancelar
+        </button>
+        <button (click)="saveShortDesc()" class="create-button" mat-raised-button>Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="title-content">
+    <h2>Multimedia</h2>
+    <h4 class="edit-button" (click)="multimediaEditable = !multimediaEditable">Editar</h4>
+  </div>
+  <mat-divider></mat-divider>
+  <br>
+  <div class="course-multimedia">
+    <video controls [src]="video" width="600">
+      This browser doesn't support HTML5
+    </video>
+    <div class="course-form">
+      <form [formGroup]="courseDetailForm">
+        <mat-form-field appearance="outline" class="desc-long">
+          <mat-label>Descripción Larga: </mat-label>
+          <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="5"
+            cdkAutosizeMaxRows="10" formControlName="descLong"></textarea>
+        </mat-form-field>
+      </form>
+      <div class="buttons-container full-width" *ngIf="multimediaEditable">
+        <button class="cancel-button" (click)="cancel()" mat-elevation-z0 mat-raised-button>
+          Cancelar
+        </button>
+        <button (click)="saveLongDesc()" class="create-button" mat-raised-button>Guardar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="title-content">
+    <h2>URL Video</h2>
+  </div>
+  <mat-divider></mat-divider>
+  <br>
+  <div>
+    <form [formGroup]="courseDetailForm" class="row">
+      <mat-form-field appearance="outline" class="upload-video-input">
+        <mat-label>URL del video: </mat-label>
+        <input matInput formControlName="keyVideoPresentation">
+      </mat-form-field>
+      <label for="video-upload" class="button-change-video">
+        <fa-icon class="icon-white" [icon]="['fas', 'upload']"></fa-icon>
+      </label>
+      <input type="file" id="video-upload" class="file-upload-input" (change)="addVideoFile($event)">
+    </form>
+  </div>
+
+  <div class="title-content">
+    <h2>Requerimientos</h2>
+  </div>
+  <mat-divider></mat-divider>
+  <div cdkDropList (cdkDropListDropped)="drop($event, requirements)">
+    <div class="requiremets-list" *ngFor="let item of requirements let i = index" [attr.data-index]="i" cdkDrag>
+      <div class="requirements-name">
+        <fa-icon class="icon" [icon]="['fas', 'bars']"></fa-icon>
+        {{item}}
+      </div>
+      <div class="requirement-panel">
+        <fa-icon class="icon" [icon]="['fas', 'trash']" (click)="deleteRequirement(item)"></fa-icon>
+        <fa-icon class="icon" [icon]="['fas', 'pen-to-square']" (click)="editRequirements(item,i)"></fa-icon>
+      </div>
+    </div>
+  </div>
+
+  <div class="create-requirements-button">
+    <p (click)="openRequirements()">
+      <fa-icon class="icon" [icon]="['fas', 'plus']"></fa-icon> Nuevo requisito
+    </p>
+  </div>
+
+  <div class="title-content">
+    <h2>Asignar Docente</h2>
+  </div>
+  <mat-divider></mat-divider>
+  <br>
+  <button mat-raised-button color="primary" (click)="addTeacher()">Asignar docente</button>
+  <br>
+  <div class="teachers-table">
+    <div class="table-header">Nombre Completo</div>
+    <div class="table-body" *ngFor="let teacher of course.teachers.items let i = index">
+      <div class="img-container" [style.background-image]="'url(' + teacher.teacher.keyPhoto + ')'">
+      </div>
+      <div class="name">{{teacher.teacher.fullName}}</div>
+      <div class="check">
+        <fa-icon class="icon" [icon]="['fas', 'trash']" (click)="deleteTeacher(teacher)"></fa-icon>
+      </div>
+    </div>
+  </div>
+</div>

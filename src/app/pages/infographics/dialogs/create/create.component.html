@@ -1,0 +1,48 @@
+<div class="container-edit">
+  <h1 mat-dialog-title>Nueva infografía</h1>
+  <div class="bottom-line"></div>
+  <div class="content col g-1" mat-dialog-content>
+    <form [formGroup]="infographicForm">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input
+          #formControl
+          type="text"
+          matInput
+          formControlName="name"
+          id="name"
+        />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Descripción</mat-label>
+        <textarea
+          rows="4"
+          #formControl
+          type="text"
+          matInput
+          formControlName="description"
+          id="description"
+        ></textarea>
+      </mat-form-field>
+    </form>
+    <h1>Imagen de la infografía</h1>
+    <p class="info">Agregue una imagen menor a 50MB</p>
+    
+    <div class="add-file">
+      <app-add-file
+      (callBackFileChange)="addImageFile($event)"
+      title="Adjunte la imagen"
+      subtitle="Clic en el botón o arrastrar el archivo aquí"
+      fileType="image/png,image/jpg,image/jpeg"
+      [completed]="true"
+    >
+    </app-add-file>
+    </div>
+  </div>
+  <div class="buttons" mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close>Cancelar</button>
+    <button (click)="create()" class="btnCreate" color="primary" mat-raised-button>
+      Crear
+    </button>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+@each $prop, $value in (0: 0, 1: 10px, 2: 20px, 3: 30px, 4: 40px, 5: 50px, 6: 60px, 7: 70px, 8: 80px, 9: 90px, 10: 100px)
+  .m-#{$prop}
+    margin: $value!important
+  .mt-#{$prop}
+    margin-top: $value!important
+  .mb-#{$prop}
+    margin-bottom: $value!important
+  .mr-#{$prop}
+    margin-right: $value!important
+  .ml-#{$prop}
+    margin-left: $value!important
+  .my-#{$prop}
+    margin-top: $value!important
+    margin-bottom: $value!important

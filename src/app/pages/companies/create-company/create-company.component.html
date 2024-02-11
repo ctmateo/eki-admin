@@ -1,0 +1,101 @@
+<div mat-dialog-title class="col f-center" style="max-height: 72px;">
+  <h2 class="title-dialog"> Crear empresa</h2>
+</div>
+<hr>
+
+<form [formGroup]="companyForm">
+  <mat-dialog-content #scrollDiv>
+    <div class="col g-1">
+      <h3>Información de la empresa</h3>
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre de la compañia</mat-label>
+        <input #formControl type="text" matInput formControlName="name" id="name" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Nit</mat-label>
+        <input #formControl type="text" matInput formControlName="nit" id="nit" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Sector económico</mat-label>
+        <mat-select formControlName="industry">
+          <mat-option *ngFor="let item of economicSector" [value]="item.id">{{
+            item.name
+            }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <br>
+      <h3>Datos de contacto</h3>
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input #formControl type="text" matInput formControlName="contactName" id="contactName" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Apellido</mat-label>
+        <input #formControl type="text" matInput formControlName="contactLastname" id="contactLastname" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Correo de contacto</mat-label>
+        <input #formControl type="email" matInput formControlName="email" email="true" id="email" />
+        <mat-error *ngIf="companyForm.get('email')?.hasError('emailExists')">
+          correos electrónico destinado a otro usuario
+        </mat-error>
+      </mat-form-field>
+      <div style="display: flex; flex-direction: row; gap: 10px">
+        <mat-form-field style="width: 33%" appearance="outline">
+          <mat-label>Indicativo</mat-label>
+          <input #formControl formControlName="contactIndicator" [min]="1" type="number" matInput
+            id="contactIndicator" />
+        </mat-form-field>
+        <mat-form-field style="width: 65%" appearance="outline">
+          <mat-label>Numero de contacto</mat-label>
+          <input #formControl formControlName="contactNumber" type="tel" matInput id="contactNumber" />
+        </mat-form-field>
+      </div>
+
+      <br>
+      <h3>Información representante legal</h3>
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre del representante legal</mat-label>
+        <input type="text" matInput formControlName="attorneyName" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Apellido del representante legal</mat-label>
+        <input type="text" matInput formControlName="attorneySurname" />
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Tipo de documento del representante legal</mat-label>
+        <mat-select formControlName="attorneyTypeDoc">
+          <mat-option *ngFor="let item of documentType" [value]="item">{{
+            item
+            }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Número de documento del representante legal</mat-label>
+        <input type="text" matInput formControlName="attorneyDocNumber" />
+      </mat-form-field>
+      <br>
+
+      <h3>Información suscripción</h3>
+      <mat-form-field appearance="outline">
+        <mat-label>Numero de licencias</mat-label>
+        <input #formControl type="number" matInput formControlName="numberDemos" max="100" min="1" id="numberDemos" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha de finalización de demo</mat-label>
+        <input #formControl matInput [matDatepicker]="picker" [min]="today" formControlName="expirationDateDemo"
+          id="expirationDateDemo">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions class="action-dialog" align="end">
+    <button class="cancel-button" (click)="cancel()" mat-elevation-z0 mat-stroked-button>Cancelar</button>
+    <button class="create-button" color="primary" mat-raised-button [disabled]="isProcessing"
+      (click)="create()">Crear</button>
+  </mat-dialog-actions>
+</form>

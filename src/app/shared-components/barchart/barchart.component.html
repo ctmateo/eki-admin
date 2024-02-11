@@ -1,0 +1,6 @@
+<div class="barchart">
+    <span class="title-chart">{{title}}</span>
+    <mat-spinner *ngIf="!infoReady" class="spinner-chart" mode="indeterminate" diameter="50"></mat-spinner>
+    <div [ngClass]="infoReady ? '' : 'hidden'" (window:resize)="onResize($event)" class="reason-char mat-elevation-z0" [id]="idChart" #containerReason>
+    </div>
+</div>
